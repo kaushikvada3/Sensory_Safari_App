@@ -1,41 +1,97 @@
-# Sensory Safari Flutter
+# Sensory Safari 🐢🐘🐒
 
-Sensory Safari offers guided sensory experiences with audio feedback, progress tracking, and Firebase-backed authentication.
+**Sensory Safari** is an interactive, engaging cross-platform Flutter application designed as a learning companion. It combines gamified elements with sensory-friendly design to create an immersive experience.
 
-## Prerequisites
+## 🌟 Features
 
-- Flutter 3.24+ with Dart 3.5 SDK
-- Android Studio or the Android command-line tools
-- Firebase project configured with the included `google-services.json`
+### 🔐 Authentication & User Management
+- **Custom "Liquid Glass" UI**: A visually stunning login and signup interface featuring animated background blobs and glassmorphism effects.
+- **Local User Management**: Supports creating unique user profiles stored in Cloud Firestore.
+- **Secure Handling**: Users are authenticated anonymously via Firebase Auth while maintaining their profile data in Firestore.
 
-Run `flutter doctor` to confirm your environment is ready.
+### 🎮 Interactive "safari" Game Mode
+- **Animal Companions**: Choose your guide from a selection of animated animals:
+  - 🐢 Turtle
+  - 🐱 Cat
+  - 🐘 Elephant
+  - 🐒 Monkey
+- **Adaptive Difficulty Engine**:
+  - **Standard Levels**: Easy (🙂), Medium (😐), Hard (😮‍💨), Very Hard (🤯).
+  - **Adaptive Modes**: 🧠 Adaptive (adjusts to player performance) and ⚡️ Adaptive Fast.
+- **Customizable Gameplay**:
+  - **Tries**: Adjust the number of attempts (1–30).
+  - **Stimulus Duration**: Control how long the stimulus is shown (1–10s).
+  - **Outcome Duration**: Set the feedback duration (1–10s).
+  - **Sensory Toggles**: Independent controls for **Lights** ☀️ and **Sound** 🔊.
 
-## Local Development
+### 🎨 Visual & Audio Experience
+- **Dynamic Animations**: The UI feels alive with breathing animations, title pulsing, and mascot bobbing.
+- **Haptic Feedback**: Integrated haptic responses for user interactions (e.g., selecting options, changing settings).
+- **Responsive Design**: Optimized for different screen sizes with a layout that adapts from compact phones to tablets.
 
-1. Install dependencies: `flutter pub get`
-2. Run static checks: `flutter analyze`
-3. Execute widget tests: `flutter test`
-4. Launch the app on a device or emulator: `flutter run`
+## 🛠 Tech Stack
 
-## Android Release Workflow
+- **Framework**: [Flutter](https://flutter.dev/) (Dart)
+- **Backend**: [Firebase](https://firebase.google.com/)
+  - **Firestore**: Database for user profiles and game settings.
+  - **Authentication**: Anonymous auth for session management.
+- **State Management**: `ChangeNotifier` / Provider pattern for app settings.
+- **Persistence**: `shared_preferences` for local device settings (last logged-in user, basic configs).
 
-1. Generate an upload keystore (run from the `android/` directory):
-   ```
-   keytool -genkey -v -keystore app/upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias YOUR_KEY_ALIAS
-   ```
-2. Copy `android/key.properties.template` to `android/key.properties` and update the passwords, alias, and keystore path to match your keystore.
-3. Bump the `version` in `pubspec.yaml` (e.g., `1.1.0+2`) before each Play Store submission.
-4. Build a release bundle: `flutter build appbundle`
-5. The signed bundle is generated at `build/app/outputs/bundle/release/app-release.aab`. Upload this file to the Google Play Console.
+## 🚀 Getting Started
 
-> Keep the keystore and `android/key.properties` private—never commit them to source control.
+### Prerequisites
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) (3.5.3 or later)
+- [CocoaPods](https://cocoapods.org/) (for iOS)
+- Firebase Project configured.
 
-## iOS Release (Quick Reference)
+### Installation
 
-1. Run `flutter build ipa` once you have configured certificates and provisioning profiles.
-2. Distribute the generated archive via Xcode Organizer or Transporter.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/kaushikvada3/Sensory_Safari_App.git
+    cd sensory_safari_flutter
+    ```
 
-## Troubleshooting
+2.  **Install dependencies:**
+    ```bash
+    flutter pub get
+    ```
 
-- Clear the build cache if you see stale artifacts: `flutter clean`
-- Update Firebase settings if you add new services: see `lib/firebase_options.dart`
+3.  **Run the app:**
+    ```bash
+    # For iOS Simulator
+    open -a Simulator
+    flutter run
+
+    # For Web
+    flutter run -d chrome
+    ```
+
+## ⚙️ Configuration
+
+The app relies on `firebase_options.dart` for connection details. Ensure you have the correct Firebase configuration generated for your project using the FlutterFire CLI:
+
+```bash
+flutterfire configure
+```
+
+## 📱 Project Structure
+
+- `lib/main.dart`: Entry point. Sets up Firebase and the main MaterialApp.
+- `lib/startup/`: Contains the logic for the initial app flow:
+    - `startup_gate_page.dart`: Manages the flow from Login -> Loading -> Rotate Gate.
+    - `login_page.dart`: The main authentication screen.
+- `lib/features/game/view/content_view.dart`: The core game dashboard where users select animals, difficulty, and settings.
+- `lib/features/game/view/test_view.dart`: The actual gameplay view (referenced in routes).
+
+## 🤝 Contributing
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+---
+*Built with ❤️ in Flutter*
