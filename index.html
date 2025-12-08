@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
+  <title>Sensory Safari</title>
+  <style>
+    #registerPage {
+      max-width: 700px;
+      width: 90%;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 50px auto;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    }
+
+    #registerPage h2 {
+      font-size: 2em;
+      margin-bottom: 25px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    #registerPage label {
+      display: block;
+      text-align: left;
+      margin-left: 5%;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #fff;
+      font-size: 1.1em;
+    }
+
+    #registerPage input {
+      width: 90%;
+      padding: 12px;
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      background-color: #fefbd8;
+      color: #333;
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    #registerPage button {
+      padding: 12px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #fff, 0 0 20px #28a745;
+      transition: transform 0.2s;
+    }
+
+    #registerPage button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #fff, 0 0 25px #28a745;
+    }
+
+    #registerPage a {
+      display: block;
+      margin-top: 20px;
+      font-size: 1em;
+      color: #FFD700;
+      text-decoration: underline;
+    }
+
+    #registerPage a:hover {
+      color: #ffffff;
+    }
+    #authContainer {
+      padding: 30px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    }
+
+    #authContainer h2 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    #authContainer input {
+      width: 95%;
+      padding: 12px;
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      background-color: #fefbd8;
+      color: #333;
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    #authContainer button {
+      font-size: 1em;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #authContainer button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #fff, 0 0 20px #28a745;
+    }
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('Images/Background.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      image-rendering: auto;
+      image-rendering: crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      color: #fff;
+    }
+    .container {
+      max-width: 700px;
+      width: 90%;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      color: #fff;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type=range] {
+      width: 100%;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #FFD700;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type=range]:hover::-webkit-slider-thumb,
+    input[type=range]:active::-webkit-slider-thumb {
+      box-shadow: 0 0 10px #fff, 0 0 20px #FFD700;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #FFD700;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type=range]:hover::-moz-range-thumb,
+    input[type=range]:active::-moz-range-thumb {
+      box-shadow: 0 0 10px #fff, 0 0 20px #FFD700;
+    }
+    .animal-options {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 30px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 10px 0;
+    }
+    .animal-option {
+      flex: 0 0 auto;
+      text-align: center;
+      scroll-snap-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      background: transparent;
+      padding: 10px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 120px;
+    }
+    .animal-option img {
+      width: auto;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .animal-option.selected {
+      border-color: gold;
+      transform: scale(1.1);
+    }
+    button {
+      display: block;
+      margin: 20px auto 0;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 25px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #fff, 0 0 20px #28a745;
+    }
+    #buttons button {
+      background-color: #4CAF50; /* vibrant green */
+      border: none;
+      color: white;
+      padding: 20px 35px;
+      text-align: center;
+      font-size: 2em;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #fff, 0 0 20px #4CAF50;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #fff, 0 0 25px #45a049;
+    }
+    #countdown {
+      display: none;
+      text-align: center;
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+    }
+    #countdown, #test, #gameOver {
+      display: none;
+      text-align: center;
+      margin-top: 30px;
+    }
+    #chartContainer {
+      display: none;
+      text-align: center;
+      margin-top: 30px;
+      background-color: transparent;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 100%;
+    }
+    #wave-container {
+      position: relative;
+      height: 600px;
+      border: none;
+      margin: 20px;
+      background-color: transparent;
+      overflow: hidden;
+      width: 90%;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+    .corner-light {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: yellow;
+      box-shadow: 0 0 20px yellow;
+      display: none;
+    }
+    .corner-light.top-left {
+      top: 10px;
+      left: 10px;
+    }
+    .corner-light.top-right {
+      top: 10px;
+      right: 10px;
+    }
+    .corner-light.bottom-left {
+      bottom: 10px;
+      left: 10px;
+    }
+    .corner-light.bottom-right {
+      bottom: 10px;
+      right: 10px;
+    }
+    /* Responsive design for tablets and phones */
+    @media (max-width: 768px) {
+      .moving-animal {
+        width: 150px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      #wave-container {
+        height: 300px;
+        margin: 10px;
+        width: 98%;
+        max-width: 100%;
+      }
+
+      #test button {
+        font-size: 1.2em;
+        padding: 10px;
+        width: 80px;
+      }
+
+      #countdown h2 {
+        font-size: 2em;
+      }
+
+      #countdownTimer {
+        font-size: 2.5em;
+      }
+
+      .container {
+        width: 95%;
+        padding: 15px;
+        max-width: 100%;
+      }
+
+      .animal-option img {
+        width: 80px;
+        height: 80px;
+      }
+
+      #buttons button {
+        font-size: 1.2em;
+        padding: 15px 25px;
+      }
+
+      #chartContainer {
+        padding: 10px;
+        width: 99%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      canvas {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+    }
+    @keyframes moveRight {
+      from { left: -150px; }
+      to { left: 100%; }
+    }
+    @keyframes moveLeft {
+      from { left: 100%; }
+      to { left: -150px; }
+    }
+    @keyframes easyMove {
+      0% { left: -100px; top: 50%; }
+      100% { left: 100%; top: 50%; }
+    }
+    @keyframes mediumMove {
+      0% { left: -100px; top: 100%; }
+      100% { left: 100%; top: -50px; }
+    }
+    @keyframes hardMove {
+      0% { left: -100px; top: -100px; }
+      100% { left: 100%; top: 100%; }
+    }
+    @keyframes veryHardMove {
+      0% { left: -100px; top: -100px; }
+      100% { left: 100%; top: 100%; }
+    }
+    @keyframes hardMoveDiagonal {
+      0% { left: -120px; top: -120px; transform: translate(-50%, -50%) rotate(45deg); }
+      100% { left: 100%; top: 100%; transform: translate(-50%, -50%) rotate(45deg); }
+    }
+
+    @keyframes hardMoveDiagonalReverse {
+      0% { left: 100%; top: 100%; transform: translate(-50%, -50%) rotate(45deg); }
+      100% { left: -120px; top: -120px; transform: translate(-50%, -50%) rotate(45deg); }
+    }
+    @keyframes veryHardMoveMultiple {
+      0% { left: -120px; top: -120px; }
+      100% { left: 100%; top: 100%; }
+    }
+
+    @keyframes veryHardMoveMultipleReverse {
+      0% { left: 100%; top: 100%; }
+      100% { left: -120px; top: -120px; }
+    }
+    .animal-row {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+      background: transparent !important;
+      border: none !important;
+    }
+    .moving-animal {
+      position: absolute;
+      width: 220px;
+      height: auto;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    @keyframes easyMoveMultiple {
+      0% { left: -500px; top: 50%; transform: translateY(-50%); }
+      100% { left: 100%; top: 50%; transform: translateY(-50%); }
+    }
+    @keyframes mediumMoveMultiple {
+      0% { left: -500px; top: 100%; }
+      100% { left: 100%; top: -50px; }
+    }
+    @keyframes hardMoveMultiple {
+      0% { left: -500px; top: -500px; }
+      100% { left: 100%; top: 100%; }
+    }
+    @keyframes veryHardMoveMultiple {
+      0% { left: -500px; top: -500px; }
+      100% { left: 100%; top: 100%; }
+    }
+    @keyframes easyMoveMultipleReverse {
+      0% { left: 120%; }
+      100% { left: -500px; }
+    }
+    @keyframes mediumMoveMultipleReverse {
+      0% { left: 120%; top: -50px; }
+      100% { left: -500px; top: 100%; }
+    }
+    @keyframes hardMoveMultipleReverse {
+      0% { left: 120%; top: 100%; }
+      100% { left: -500px; top: -500px; }
+    }
+    @keyframes veryHardMoveMultipleReverse {
+      0% { left: 120%; top: 100%; }
+      100% { left: -500px; top: -500px; }
+    }
+
+    .animal-option:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    #countdown h2 {
+      font-size: 3em;
+      color: #FFD700;
+      text-shadow: 2px 2px 5px #000;
+      animation: popIn 0.6s ease-in-out infinite alternate;
+    }
+
+    #countdownTimer {
+      font-size: 4em;
+      color: #00FFFF;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #000;
+      animation: bounceIn 0.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+    @keyframes bounceIn {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .sound-toggle {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      background-color: #ffcc00;
+      color: #000;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .sound-toggle:hover {
+      background-color: #ffd633;
+      box-shadow: 0 0 10px #fff, 0 0 20px #ffcc00;
+      transform: scale(1.05);
+    }
+
+    .sound-toggle.active {
+      background-color: #28a745;
+      color: #fff;
+      border-color: #28a745;
+    }
+  </style>
+  <style>
+    /* .flashing-lights {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: space-around;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+ 
+    .light {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: red;
+      animation: flash 1s infinite alternate;
+    }
+ 
+    .light:nth-child(2) { background-color: green; animation-delay: 0.2s; }
+    .light:nth-child(3) { background-color: blue; animation-delay: 0.4s; }
+    .light:nth-child(4) { background-color: yellow; animation-delay: 0.6s; }
+    .light:nth-child(5) { background-color: pink; animation-delay: 0.8s; }
+ 
+    @keyframes flash {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    } */
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  </head>
+<body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script>
+    /**
+     * ================================
+     *  Sensory Safari Main JS Module
+     * ================================
+     * Responsibilities:
+     * - User authentication (login, registration, sign out)
+     * - Game initialization and parameter selection
+     * - Task/gameplay logic and adaptive difficulty
+     * - Feedback display after each trial
+     * - Session logging and results visualization with Firebase Firestore
+     * - Results and metrics visualization (charts)
+     * - Utility functions: event listeners, UI linkages, image preloading
+     */
+    // === USER AUTHENTICATION ===
+
+    // Masked typing effect for password fields, so last char briefly shows then hides
+    function handleMaskedTyping(input) {
+      let lastValue = "";
+      input.addEventListener("input", () => {
+        const value = input.value;
+        if (value.length > lastValue.length) {
+          const newChar = value.charAt(value.length - 1);
+          const visiblePart = value.slice(0, -1);
+          input.type = "text";
+          input.value = visiblePart + newChar;
+          setTimeout(() => {
+            if (input.value === visiblePart + newChar) {
+              input.type = "password";
+            }
+          }, 700);
+        }
+        lastValue = input.value;
+      });
+    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyDgIRpqf8GN9uGBTXc0PkLHZh_F3y4L-8",
+      authDomain: "sensory-safari.firebaseapp.com",
+      projectId: "sensory-safari",
+      storageBucket: "sensory-safari.appspot.com",
+      messagingSenderId: "212873494173",
+      appId: "1:212873494173:web:d75aef49c713175d20de74",
+      measurementId: "G-K7MD22YIJ9"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    window.db = db; // for console debugging
+
+    // Ensure Firestore rules see an authenticated session
+    firebase.auth().signInAnonymously()
+      .then(() => console.log('[Auth] Anonymous sign-in OK'))
+      .catch(e => console.error('[Auth] Anonymous sign-in failed', e));
+
+    // Correct the score metric calculation logic
+    function displayFinalScore() {
+      const totalCorrect = trialResults.filter(tr => tr.correct).length;
+      const effectiveTotal = totalTries || selections.numTries || tries; // Ensure denominator is never zero
+
+      // Calculate d-prime metric
+      const correctGuessRight = window.correctRight || 0;
+      const incorrectGuessRight = window.incorrectRight || 0;
+      const correctGuessLeft = window.correctLeft || 0;
+      const incorrectGuessLeft = window.incorrectLeft || 0;
+      const missedGuess = (window.noResponseRight || 0) + (window.noResponseLeft || 0);
+
+      let fractHit = 0, fractCR = 0;
+      if (correctGuessRight + incorrectGuessRight + missedGuess / 2 !== 0) {
+        fractHit = correctGuessRight / (correctGuessRight + incorrectGuessRight + missedGuess / 2);
+      }
+      if (incorrectGuessLeft + correctGuessLeft + missedGuess / 2 !== 0) {
+        fractCR = incorrectGuessLeft / (incorrectGuessLeft + correctGuessLeft + missedGuess / 2);
+      }
+
+      function norminv(p) {
+        if (p === 0) p = 0.1; // Prevent zero input
+        const a1 = -39.69683028665376, a2 = 220.9460984245205, a3 = -275.9285104469687;
+        const a4 = 138.357751867269, a5 = -30.66479806614716, a6 = 2.506628277459239;
+        const t = 1.0 / (1.0 + 0.2316419 * Math.abs(p));
+        const d = 0.3989422804014337 * Math.exp(-p * p / 2.0);
+        const x = ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t;
+        return 1 - d * x;
+      }
+
+      const dp1 = norminv(fractHit);
+      const dp2 = norminv(fractCR);
+      const dprime1 = (dp1 - dp2).toFixed(3);
+
+      // Update final score display
+      document.getElementById('finalScore').textContent =
+        `Score: ${totalCorrect} / ${effectiveTotal} | Metric: ${dprime1}`;
+    }
+
+    // Call displayFinalScore at the end of the game
+    function runTask() {
+      // ...existing code...
+      if (currentTry >= tries) {
+        document.getElementById('test').style.display = 'none';
+        document.getElementById('gameOver').style.display = 'block';
+        displayFinalScore(); // Ensure score metric is displayed correctly
+        return;
+      }
+      // ...existing code...
+    }
+  </script>
+  <!--
+  <div id="flashingLights" class="flashing-lights" style="display: none;">
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+  </div>
+  -->
+  <button onclick="toggleHowItWorks()" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; font-size: 24px; background-color: #FFD700; color: #000; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 0 12px #000; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;">
+    ?
+  </button>
+  <button onclick="window.location.href='https://perceptual-app-beta-1.vercel.app'"
+    style="
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      padding: 10px 20px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #000;
+    ">
+    ⬅ Back to Main Site
+  </button>
+  <button id="signOutBtn" onclick="signOut()" style="
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 9999;
+    padding: 8px 14px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    display: none;
+  ">
+    Sign Out
+  </button>
+  <div class="container" id="authContainer">
+    <h2 style="text-align:center; color:white;">Sign in to your account</h2>
+    <form id="login-form" autocomplete="off">
+      <div class="form-group">
+        <label for="authUsername">Username:</label>
+        <input type="text" id="authUsername" placeholder="Enter username" style="width:95%; padding:10px; font-size: 1.1em;" />
+        <label for="authPassword">Password:</label>
+        <input type="password" id="authPassword" placeholder="Enter password" style="width:95%; padding:10px; font-size: 1.1em;" />
+      </div>
+      <div class="form-group" style="display: flex; justify-content: space-around; margin-top: 15px;">
+        <button type="button" onclick="showRegister()" style="background-color:#1E90FF;">Register</button>
+        <button type="button" id="login-btn" onclick="loginUser()" style="background-color:#28a745;">Login</button>
+      </div>
+      <div id="loginErrorMessage" style="display: none; color: red; margin-top: 10px;"></div>
+    </form>
+  </div>
+
+  <div class="container">
+    <div id="registerPage" style="display:none;">
+      <h2>Create an Account</h2>
+      <label for="regName">Name:</label>
+      <input type="text" id="regName" placeholder="Your Name">
+      <label for="regUsername">Username:</label>
+      <input type="text" id="regUsername" placeholder="Choose a username">
+      <label for="regPassword">Password:</label>
+      <input type="password" id="regPassword" placeholder="Create password">
+      <button onclick="submitRegistration()">Submit</button>
+      <a href="#" onclick="showLogin()">Back to Login</a>
+    </div>
+  </div>
+  <script>
+    // Handles switching to the registration form view
+    function showRegister() {
+      document.getElementById('authContainer').style.display = 'none';
+      document.getElementById('registerPage').style.display = 'block';
+    }
+
+    // Switches back to the login form view
+    function showLogin() {
+      document.getElementById('registerPage').style.display = 'none';
+      document.getElementById('authContainer').style.display = 'block';
+    }
+
+    // Submits registration info and creates a new user in Firestore
+    function submitRegistration() {
+      const name = document.getElementById('regName').value.trim();
+      const rawUsername = document.getElementById('regUsername').value.trim();
+      const username = rawUsername;                        // preserve exact casing
+      const password = document.getElementById('regPassword').value.trim();
+
+      if (!name || !rawUsername || !password) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      db.collection("users").doc(username).get().then(doc => {
+        if (doc.exists) {
+          alert("Username already exists. Please choose a different one.");
+        } else {
+          db.collection("users").doc(username).set({
+            name: name,
+            password: password,
+            createdAt: new Date().toLocaleString(),
+            sessionCount: 0
+          }).then(() => {
+            alert("Account created successfully! Redirecting to login...");
+            document.getElementById('registerPage').style.display = 'none';
+            document.getElementById('authContainer').style.display = 'block';
+          });
+        }
+      });
+    }
+
+  </script>
+  <div class="container" id="home" style="display:none; background-color: rgba(0, 0, 0, 0.592); border-radius: 12px; padding: 20px;">
+    <h1>🌴 Sensory Safari 🌴</h1>
+    <div class="form-group">
+      <label for="numTries">Number of Tries:</label>
+      <input type="range" id="numTries" min="1" max="25" value="5" />
+      <span id="numTriesValue">5</span>
+    </div>
+    <div class="form-group">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <label for="difficultySlider" style="font-weight: bold;">Choose Difficulty:</label>
+        <span id="difficultyLabel" style="font-size: 1.2em; font-weight: bold; color: #007BFF;">Medium</span>
+      </div>
+      <input type="range" id="difficultySlider" min="0" max="4" value="1" style="accent-color: #007BFF;" />
+    </div>
+    <div class="form-group">
+      <label>Choose Your Animal:</label>
+      <div class="animal-options" id="animalList">
+        <div class="animal-option" data-animal="turtle">
+          <img src="Images/Turtle/turtle.jpeg" alt="Turtle" id="turtleImg" onmouseover="this.src='Images/Turtle/turtle.jpeg'" onmouseout="this.src='Images/Turtle/turtle.jpeg'" />
+          <div>Turtle</div>
+        </div>
+        <div class="animal-option" data-animal="cat">
+          <img src="Images/Cat/cat.jpeg" alt="Cat" id="catImg" onmouseover="this.src='Images/Cat/cat.jpeg'" onmouseout="this.src='Images/Cat/cat.jpeg'" />
+          <div>Cat</div>
+        </div>
+        <div class="animal-option" data-animal="elephant">
+          <img src="Images/Owl/owl_on_branch.jpeg" alt="Elephant" id="elephantImg" onmouseover="this.src='Images/Owl/owl_on_branch.jpeg'" onmouseout="this.src='Images/Owl/owl_on_branch.jpeg'" />
+          <div>Elephant</div>
+        </div>
+        <div class="animal-option" data-animal="monkey">
+          <img src="Images/Monkey/monkey_before_swing.jpeg" alt="Monkey" id="monkeyImg" onmouseover="this.src='Images/Monkey/monkey_before_swing.jpeg'" onmouseout="this.src='Images/Monkey/monkey_before_swing.jpeg'" />
+          <div>Monkey</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="stimDuration">Stimulus Duration (sec):</label>
+      <input type="range" id="stimDuration" min="1" max="10" value="4" />
+      <span id="stimDurationValue">4</span>
+    </div>
+    <div class="form-group">
+      <label for="outcomeDuration">Outcome Duration (sec):</label>
+      <input type="range" id="outcomeDuration" min="1" max="10" value="2" />
+      <span id="outcomeDurationValue">2</span>
+    </div>
+    <div class="form-group">
+      <button id="soundToggleBtn" class="sound-toggle" onclick="toggleSound()">Play Sound?</button>
+      <img id="soundIcon" src="speaker_white.jpeg" alt="Sound Icon" style="display: none; margin-left: 10px; height: 30px; vertical-align: middle;" />
+      <button id="lightsToggleBtn" class="sound-toggle" onclick="toggleLights()">Lights Off?</button>
+    </div>
+    <button onclick="startGame()">Go!</button>
+  </div>
+
+  <div id="gameContainer" style="position: relative;">
+  </div>
+  <div id="countdown">
+    <h2>Get Ready...</h2>
+    <p id="countdownTimer">3</p>
+  </div>
+
+  <div id="test">
+    <h2><span id="taskNum">1</span></h2>
+    <div style="display: flex; align-items: stretch; justify-content: center; height: 600px; background: transparent !important; border: none !important;">
+      <div style="flex-shrink: 0; display: flex; align-items: center;">
+        <button onclick="handleResponse('P')" style="height: 100%; width: 100px; font-size: 3em; background-color: #005f73; color: #ffffff; border: 3px solid #ffffff; border-radius: 12px; box-shadow: 0 0 15px #000;">⬅</button>
+      </div>
+      <div id="wave-container" class="animal-row" style="flex-grow: 1; margin: 0 10px; background-color: transparent !important; border-radius: 10px; border: none !important;"></div>
+      <div style="flex-shrink: 0; display: flex; align-items: center;">
+        <button onclick="handleResponse('Q')" style="height: 100%; width: 100px; font-size: 3em; background-color: #6a4c93; color: #ffffff; border: 3px solid #ffffff; border-radius: 12px; box-shadow: 0 0 15px #000;">➡</button>
+      </div>
+    </div>
+    <p id="score" style="color: #FFD700; font-size: 2em; text-shadow: 2px 2px 5px #000;">Score: 0</p>
+    <p id="responseCountdown" style="color: white; font-size: 1.5em; margin-top: 10px; text-shadow: 1px 1px 3px #000;"></p>
+    <button
+      onclick="quitGame()"
+      style="margin-top: 20px; background-color: #dc3545; color: white; padding: 10px 25px; font-size: 1.2em; border: none; border-radius: 10px; cursor: pointer; position: relative; z-index: 9999;"
+    >
+      Quit
+    </button>
+  </div>
+
+  <div id="gameOver">
+    <h2 style="color: white; font-size: 2.5em; text-shadow: 2px 2px 5px #000;">All Done!</h2>
+    <p id="finalScore" style="color: #FFD700; font-size: 2em; font-weight: bold; text-shadow: 2px 2px 5px #000;">Score: 0 / 0</p>
+    <button onclick="resetGameAndStart()" style="background-color: #28a745; font-size: 1.5em;">Restart</button>
+    <button onclick="showFeedbackForm()" style="background-color: #1E90FF; font-size: 1.2em; margin-top: 10px;">Submit Feedback</button>
+    <button onclick="viewOverallResults()" style="background-color: orange; font-size: 1.2em; margin-top: 10px; color: white; padding: 10px 25px; border-radius: 10px; border: none; cursor: pointer;">
+      Overall Results
+    </button>
+  </div>
+
+
+  <div id="overallResultsPage" class="container" style="display: none; background-color: rgba(255,255,255,0.95); border-radius: 12px; padding: 30px; position: relative; z-index: 1000;">
+    <h2 style="color: black; text-align: center;">📊 Overall Session History</h2>
+    <canvas id="overallResultsChart" style="max-width: 800px; width: 100%; margin: 20px auto; height: 400px;"></canvas>
+    <div id="sessionDetails" style="margin-top: 30px; overflow-x: auto;">
+      <h3 style="color: black; text-align: center;">📄 Session Summary Table</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.95em; background-color: #fff; color: #000;">
+        <thead>
+          <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid #ccc; padding: 8px;">Session</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Difficulty</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Correct</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Trials</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Stim Duration</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Outcome Duration</th>
+          </tr>
+        </thead>
+        <tbody id="sessionDetailsBody"></tbody>
+      </table>
+    </div>
+    <button onclick="returnToEndScreen()" style="display: block; margin: 20px auto; background-color: #1E90FF; color: white; padding: 10px 25px; border-radius: 10px; border: none; font-size: 1.1em;">
+      Back
+    </button>
+    <button id="goBackButton" style="display: block; margin: 20px auto; background-color: #28a745; color: white; padding: 10px 25px; border-radius: 10px; border: none; font-size: 1.1em;">
+      Back to Home
+    </button>
+  </div>
+
+  <div id="chartContainer" style="display: none; text-align: center; margin-top: 30px; background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 100%; max-width: 100%;">
+    <h2 style="color: black;">Trial Results</h2>
+    <canvas id="noDistractorChart" style="max-width: 600px; width: 100%; margin: 20px auto; display: block;"></canvas>
+    <canvas id="auditoryDistractorChart" style="max-width: 600px; width: 100%; margin: 20px auto; display: block;"></canvas>
+    <canvas id="visualDistractorChart" style="max-width: 600px; width: 100%; margin: 20px auto; display: block;"></canvas>
+  </div>
+
+  <script>
+    let responseTimeout;
+    // --- Blinking background variables ---
+    let backgroundCycleInterval = null;
+    let currentBackgroundIndex = 0;
+    const backgroundImages = [
+      'Images/Background_1.jpeg',
+      'Images/Background_2.jpeg',
+      'Images/Background_3.jpeg'
+    ];
+    let visualCountdownInterval = null;
+    let isQuitting = false;
+    // Add global timer handles for countdown and trial
+    let countdownInterval;
+    // let trialTimeout; // No longer needed; remove all uses below.
+    // Global tracker for finished animal animations
+    let animalsFinished = 0;
+    // Global interval handle for continuous animal spawning
+    let spawnInterval = null;
+    // Track how many animals are currently on‑screen
+    let activeAnimals = 0;
+    // Flag so we don't start multiple countdowns
+    let countdownStarted = false;
+    const backgrounds = [
+      'Images/Background_1.jpeg',
+      'Images/Background_2.jpeg',
+      'Images/Background_3.jpeg'
+    ];
+    window.correctRight = 0;
+    window.incorrectRight = 0;
+    window.correctLeft = 0;
+    window.incorrectLeft = 0;
+    window.missed = 0;
+    window.noResponseRight = 0;
+    window.noResponseLeft = 0;
+    const beepAudio = new Audio('beep.wav');
+    let selections = {};
+    let selectedAnimal = null;
+    let tries = 5, score = 0, currentTry = 0;
+    let distractorLog = []; // Array to track distractor usage per trial
+    let trialResults = []; // Array to track trial results
+    // Step 1: Track total number of tries for this game session
+    let totalTries = 0;   // total number of trials for this game session
+
+    // === GAME INITIALIZATION AND START ===
+
+    // Link slider UI to value display
+    ['numTries', 'stimDuration', 'outcomeDuration'].forEach(id => {
+      const input = document.getElementById(id);
+      const span = document.getElementById(id + 'Value');
+      input.addEventListener('input', () => span.textContent = input.value);
+    });
+
+    // Handle animal selection UI
+    document.querySelectorAll('.animal-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.animal-option').forEach(opt => opt.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedAnimal = el.getAttribute('data-animal');
+      });
+    });
+
+    // Difficulty slider mapping and label updater with dynamic color
+    const difficultyLevelsMap = ["easy", "medium", "hard", "veryHard", "adaptive"];
+    const difficultyLabel = document.getElementById('difficultyLabel');
+    const difficultySlider = document.getElementById('difficultySlider');
+    if (difficultySlider && difficultyLabel) {
+      difficultySlider.addEventListener('input', () => {
+        const level = difficultyLevelsMap[difficultySlider.value];
+        // Format label: capitalize first letter, add space before uppercase
+        difficultyLabel.textContent = level.charAt(0).toUpperCase() + level.slice(1).replace(/([A-Z])/g, ' $1');
+
+        let color = '#007BFF'; // Default: easy (blue)
+        switch (level) {
+          case 'medium':
+            color = '#FFD700'; // Yellow
+            break;
+          case 'hard':
+            color = '#FFA500'; // Orange
+            break;
+          case 'veryHard':
+            color = '#FF4C4C'; // Red
+            break;
+          case 'adaptive':
+            // Animate adaptive mode using gradient colors
+            let hue = 0;
+            if (window.adaptiveColorInterval) clearInterval(window.adaptiveColorInterval);
+            window.adaptiveColorInterval = setInterval(() => {
+              hue = (hue + 2) % 360;
+              const adaptiveColor = `hsl(${hue}, 100%, 60%)`;
+              difficultyLabel.style.color = adaptiveColor;
+              difficultySlider.style.setProperty('--adaptive-color', adaptiveColor);
+              difficultySlider.style.accentColor = adaptiveColor;
+            }, 50);
+            return;
+        }
+        // If not adaptive, clear any running interval
+        clearInterval(window.adaptiveColorInterval);
+        difficultyLabel.style.color = color;
+        difficultySlider.style.accentColor = color;
+      });
+    }
+
+    // --- AUTHENTICATION LOGIC ---
+    let loggedInUser = null;
+
+    function registerUser() {
+      const username = document.getElementById('authUsername').value.trim();
+      const password = document.getElementById('authPassword').value;
+      if (!username || !password) {
+        alert("Please enter a username and password.");
+        return;
+      }
+      db.collection("users").doc(username).get().then(doc => {
+        if (doc.exists) {
+          alert("Username already exists. Please choose a different one.");
+        } else {
+          db.collection("users").doc(username).set({
+            password: password,
+            createdAt: new Date().toLocaleString()
+          }).then(() => {
+            alert("Account created! You're now logged in.");
+            loggedInUser = username;
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
+          });
+        }
+      });
+    }
+
+    function loginUser() {
+      const loginButton = document.getElementById("login-btn");
+      loginButton.disabled = true;
+      loginButton.textContent = "Logging in...";
+      const username = document.getElementById('authUsername').value.trim();  // exact‑case lookup
+      const password = document.getElementById('authPassword').value.trim();
+      const errorMessage = document.getElementById("loginErrorMessage");
+      // Hide error message initially
+      if (errorMessage) {
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+      }
+      if (!username || !password) {
+        if (errorMessage) {
+          errorMessage.style.display = "block";
+          errorMessage.textContent = "Please enter your username and password.";
+        }
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
+        return;
+      }
+      db.collection("users").doc(username).get().then(doc => {
+        console.log("Checking user login for:", username);
+        if (doc.exists) {
+          if (doc.data().password === password) {
+            console.log("Firebase password match. Logging in...");
+            // alert("Login successful!"); // Removed to prevent message box after successful login
+            console.log("User authenticated, proceeding to homepage...");
+            loggedInUser = username;
+            window.loggedInUser = username; // expose globally for history/results
+
+            const showHome = () => {
+              document.getElementById('authContainer').style.display = 'none';
+              document.getElementById('home').style.display = 'block';
+              loginButton.disabled = false;
+              loginButton.textContent = "Login";
+              // Show sign‑out button after login
+              document.getElementById("signOutBtn").style.display = "block";
+              if (errorMessage) {
+                errorMessage.style.display = "none";
+                errorMessage.textContent = "";
+              }
+            };
+
+            // Immediately transition to the home screen
+            showHome();
+          } else {
+            // Show error message for incorrect password
+            if (errorMessage) {
+              errorMessage.style.display = "block";
+              errorMessage.textContent = "Incorrect username or password. Please try again.";
+            }
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+          }
+        } else {
+          // Show error message for non-existent user
+          if (errorMessage) {
+            errorMessage.style.display = "block";
+            errorMessage.textContent = "Incorrect username or password. Please try again.";
+          }
+          loginButton.disabled = false;
+          loginButton.textContent = "Login";
+        }
+      }).catch(() => {
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
+      });
+    }
+    // === UTILITY: IMAGE PRELOADING ===
+    // Preload all images to avoid lag
+    const preloadImages = [
+      'Images/Background.jpeg',
+      'Images/Background_1.jpeg',
+      'Images/Background_2.jpeg',
+      'Images/Background_3.jpeg',
+      'Images/Cat/cat.jpeg',
+      'Images/Owl/owl_on_branch.jpeg',
+      'Images/Turtle/turtle.jpeg',
+      'Images/Monkey/monkey_before_swing.jpeg'
+    ];
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Starts the game by collecting all user selections and showing the countdown
+    function startGame() {
+      const playerNameInput = loggedInUser;
+      const selectedDifficulty = difficultyLevelsMap[+document.getElementById('difficultySlider').value];
+      if (!selectedDifficulty) {
+        alert("Please select a difficulty level.");
+        return;
+      }
+      if (!selectedAnimal) {
+        alert("Please select an animal.");
+        return;
+      }
+      selections = {
+        numTries: +document.getElementById('numTries').value,
+        stimDuration: +document.getElementById('stimDuration').value,
+        outcomeDuration: +document.getElementById('outcomeDuration').value,
+        soundOn: document.getElementById('soundToggleBtn').classList.contains('active'),
+        difficulty: selectedDifficulty,
+        animal: selectedAnimal,
+        playerName: playerNameInput
+      };
+      selections.lightsOn = document.getElementById('lightsToggleBtn').classList.contains('active');
+      tries = selections.numTries;
+      // Store for final score display
+      totalTries = selections.numTries;
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('howItWorks').style.display = 'none'; // hide instructions
+      document.getElementById('countdown').style.display = 'block';
+      startCountdown();
+    }
+
+    // Shows a countdown before the game starts, then launches the first task
+    function startCountdown() {
+      let count = 3;
+      const el = document.getElementById('countdownTimer');
+      document.getElementById('countdown').style.display = 'block';
+      el.textContent = count;
+
+      countdownInterval = setInterval(() => {
+        if (isQuitting) {
+          clearInterval(countdownInterval);
+          return;
+        }
+        count--;
+        if (count >= 0) {
+          el.textContent = count;
+        }
+        if (count < 0) {
+          clearInterval(countdownInterval);
+          if (isQuitting) return;
+          document.getElementById('countdown').style.display = 'none';
+          document.getElementById('test').style.display = 'block';
+          runTask();
+        }
+      }, 1000); // Show each number for exactly 1 second
+    }
+
+    // Step 1: Setup Difficulty Levels
+    const difficultyLevels = ['easy', 'medium', 'hard', 'veryHard'];
+    let currentDifficulty = 'medium'; // Adaptive starts here
+    let performanceTracker = []; // Track 'correct', 'wrong', or 'miss'
+
+    // === TASK LOGIC AND RESPONSE HANDLING ===
+
+    // Handles user response button press, evaluates correctness, updates score and feedback
+    function handleResponse(key) {
+      document.getElementById('responseCountdown').textContent = '';
+      console.log('User Pressed:', key);
+      console.log('Correct Answer:', window.correctAnswer);
+      clearInterval(visualCountdownInterval);
+
+      // Stop sound stop timeout and reset beep audio (NEW LOGIC)
+      if (window.soundStopTimeout) {
+        clearTimeout(window.soundStopTimeout);
+        window.soundStopTimeout = null;
+      }
+      beepAudio.pause();
+      beepAudio.currentTime = 0;
+      beepAudio.loop = false;
+
+      // Pause all animal animations
+      document.querySelectorAll('.moving-animal').forEach(animal => {
+        animal.style.animationPlayState = 'paused';
+      });
+      // Remove all animals from the wave container so the screen is clean for feedback
+      const waveContainer = document.getElementById('wave-container');
+      if (waveContainer) {
+        waveContainer.innerHTML = '';
+      }
+      // Stop any further animal spawns
+      if (spawnInterval) {
+        clearInterval(spawnInterval);
+        spawnInterval = null;
+      }
+      // Reset animal trackers
+      activeAnimals = 0;
+      countdownStarted = false;
+
+      // Record latency for this trial
+      window.responseGiven = true;
+      const latency = (Date.now() - trialStartTime) / 1000;
+      if (trialResults.length > 0) trialResults[trialResults.length - 1].latency = latency;
+
+      const lastTrial = trialResults[trialResults.length - 1];
+      let isCorrect = false;
+
+      if (key.toUpperCase() === window.correctAnswer.toUpperCase()) {
+        score++;
+        // Update on‑screen score after a correct response
+        document.getElementById('score').textContent = `Score: ${score}`;
+        isCorrect = true;
+        if (key.toUpperCase() === 'Q') window.correctRight++;
+        else if (key.toUpperCase() === 'P') window.correctLeft++;
+        console.log('Correct! Score:', score);
+        lastTrial.correct = true; // Mark the last trial as correct
+        performanceTracker.push('correct');
+        if (performanceTracker.length > 2) performanceTracker.shift(); // keep last 2 only
+      } else {
+        if (key.toUpperCase() === 'Q') window.incorrectRight++;
+        else if (key.toUpperCase() === 'P') window.incorrectLeft++;
+        console.log('Incorrect.');
+        clearTimeout(responseTimeout);
+        // Keep the score display in sync (score doesn't change here)
+        document.getElementById('score').textContent = `Score: ${score}`;
+        performanceTracker.push('wrong');
+        if (performanceTracker.length > 2) performanceTracker.shift(); // keep last 2 only
+      }
+
+      adjustDifficulty(); // Adjust difficulty dynamically
+      showFeedbackImage(isCorrect); // Show feedback image after response
+    }
+
+    // Handles when the user misses a response (timeout)
+    function handleMissedResponse() {
+      // Stop sound stop timeout and reset beep audio (NEW LOGIC)
+      if (window.soundStopTimeout) {
+        clearTimeout(window.soundStopTimeout);
+        window.soundStopTimeout = null;
+      }
+      beepAudio.pause();
+      beepAudio.currentTime = 0;
+      beepAudio.loop = false;
+      console.log('No response given.');
+      const lastTrial = trialResults[trialResults.length - 1];
+      lastTrial.correct = false; // Mark the last trial as incorrect
+      // Record latency as null for missed responses
+      if (trialResults.length > 0) trialResults[trialResults.length - 1].latency = null;
+      performanceTracker.push('wrong');
+      if (performanceTracker.length > 2) performanceTracker.shift(); // keep last 2 only
+      adjustDifficulty(); // Adjust difficulty dynamically
+      showFeedbackImage(false); // Show incorrect feedback image
+    }
+
+    // === ADAPTIVE DIFFICULTY LOGIC ===
+
+    // Adjusts difficulty up/down based on last two responses (for adaptive mode)
+    function adjustDifficulty() {
+      const lastTwo = performanceTracker.slice(-2); // Last 2 responses
+      const index = difficultyLevels.indexOf(currentDifficulty);
+
+      if (lastTwo.length < 2) return; // Not enough data
+
+      if (lastTwo.every(r => r === 'correct') && index < difficultyLevels.length - 1) {
+        currentDifficulty = difficultyLevels[index + 1]; // Increase difficulty
+        console.log('Increased to:', currentDifficulty);
+        performanceTracker = []; // reset after change
+      } else if (lastTwo.every(r => r === 'wrong') && index > 0) {
+        currentDifficulty = difficultyLevels[index - 1]; // Decrease difficulty
+        console.log('Decreased to:', currentDifficulty);
+        performanceTracker = []; // reset after change
+      }
+    }
+
+    // Helper to handle missed response immediately after all animals finish
+    // Starts the countdown for response after all animals have finished moving (for missed responses)
+    function startResponseCountdown() {
+      if (isQuitting) return;
+      console.log('All animals have finished moving. Triggering missed response immediately.');
+      if (!window.responseGiven) {
+        if (window.correctAnswer === 'Q') window.noResponseRight++;
+        else window.noResponseLeft++;
+        document.getElementById('score').textContent = `Score: ${score}`;
+        console.log("No response — counted as miss.");
+        handleMissedResponse();
+      }
+    }
+
+    // Step 4: Use Adaptive Difficulty Inside runTask()
+    // Runs a single task/trial: sets up animals, distractors, and handles user input
+    function runTask() {
+      if (isQuitting) return;
+      window.responseGiven = false;
+      // Track trial start time for latency measurement
+      trialStartTime = Date.now();
+      // Reset animal trackers at the start of each trial
+      activeAnimals = 0;
+      countdownStarted = false;
+      // Ensure beepAudio is loaded and ready at the start of each task
+      beepAudio.load(); // Ensure audio is ready from the start
+      // Declare global activeSoundInterval before using it
+      window.activeSoundInterval = null;
+      // Clear any previous sound stop timeout before starting a new trial
+      if (window.soundStopTimeout) {
+        clearTimeout(window.soundStopTimeout);
+        window.soundStopTimeout = null;
+      }
+      if (currentTry >= tries) {
+        if (selections.soundOn) {
+          beepAudio.pause();
+          beepAudio.currentTime = 0;
+          beepAudio.loop = false;
+        }
+        document.getElementById('test').style.display = 'none';
+        document.getElementById('gameOver').style.display = 'block';
+        displayFinalScore(); // Ensure score metric is displayed correctly
+        displayResultsChart(); // Display results chart at the end
+        
+        // Map variables to new naming
+        const correctGuessRight    = window.correctRight   || 0;
+        const inCorrectGuessRight  = window.incorrectRight || 0;
+        const correctGuessLeft     = window.correctLeft    || 0;
+        const inCorrectGuessLeft   = window.incorrectLeft  || 0;
+        const missedGuess          = (window.noResponseRight || 0) + (window.noResponseLeft || 0);
+
+        // Compute FracHit and FracCR per new formula
+        let fractHit = 0, fractCR = 0;
+        if (correctGuessRight + inCorrectGuessRight + missedGuess / 2 !== 0) {
+          fractHit = correctGuessRight / (correctGuessRight + inCorrectGuessRight + missedGuess / 2);
+        }
+        if (inCorrectGuessLeft + correctGuessLeft + missedGuess / 2 !== 0) {
+          fractCR = inCorrectGuessLeft / (inCorrectGuessLeft + correctGuessLeft + missedGuess / 2);
+        }
+
+        function norminv(p) {
+          if (p === 0) {
+            p = 0.1;
+          }
+          const a1 = -39.69683028665376;
+          const a2 = 220.9460984245205;
+          const a3 = -275.9285104469687;
+          const a4 = 138.357751867269;
+          const a5 = -30.66479806614716;
+          const a6 = 2.506628277459239;
+
+          const t = 1.0 / (1.0 + 0.2316419 * Math.abs(p));
+          const d = 0.3989422804014337 * Math.exp(-p * p / 2.0);
+          const x = ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t;
+          return 1 - d * x;
+        }
+
+        const dp1 = norminv(fractHit);
+        const dp2 = norminv(fractCR);
+        const dprime1 = (dp1 - dp2).toFixed(3);
+
+        const existingInterpretations = document.querySelectorAll('#gameOver p.interpretation');
+        existingInterpretations.forEach(p => p.remove());
+        const interpretation = document.createElement('p');
+        interpretation.classList.add('interpretation');
+        interpretation.style.color = 'white';
+        interpretation.style.fontSize = '1.5em';
+        interpretation.style.marginTop = '10px';
+        interpretation.style.textShadow = '2px 2px 5px #000';
+
+        if (dprime1 > 1.5) {
+          interpretation.textContent = 'Great sensory recognition! Performance indicates strong perceptual awareness.';
+        } else if (dprime1 > 0.5) {
+          interpretation.textContent = 'Moderate sensory recognition. Performance is above average.';
+        } else if (dprime1 > 0) {
+          interpretation.textContent = 'Slightly better than guessing. May suggest some perceptual difficulty.';
+        } else if (dprime1 == 0) {
+          interpretation.textContent = 'Performance is at chance level. Could indicate uncertain sensory recognition.';
+        } else {
+          interpretation.textContent = 'Performance is below chance. May suggest difficulty with sensory perception.';
+        }
+
+        document.getElementById('gameOver').appendChild(interpretation);
+
+        // Calculate correct answers directly from trialResults
+        const totalCorrect = trialResults.filter(tr => tr.correct).length;
+        // Fallback to ensure denominator is never zero
+        const effectiveTotal = totalTries || selections.numTries || tries;
+        document.getElementById('finalScore').textContent =
+          `Score: ${totalCorrect} / ${effectiveTotal} | Metric: ${dprime1}`;
+        console.log("Distractor Log:", distractorLog); // Log distractor usage at the end
+
+        // --- Firebase Firestore session logging ---
+        logSessionToFirestore(selections.playerName);
+        // --- End Firebase Firestore session logging ---
+        return;
+      }
+
+      document.getElementById('taskNum').textContent = `${currentTry + 1}`;
+
+      const waveContainer = document.getElementById('wave-container');
+      waveContainer.innerHTML = ''; // clear previous animals
+      animalsFinished = 0;   // reset for this trial
+      const direction = Math.random() > 0.5 ? 'Forward' : 'Backward';
+      let usedDifficulty;
+      if (selections.difficulty === 'adaptive') {
+        usedDifficulty = currentDifficulty;
+      } else {
+        usedDifficulty = selections.difficulty;
+      }
+
+      const animClass = {
+        easy: direction === 'Forward' ? 'easyMoveMultiple' : 'easyMoveMultipleReverse',
+        medium: direction === 'Forward' ? 'mediumMoveMultiple' : 'mediumMoveMultipleReverse',
+        hard: direction === 'Forward' ? 'hardMoveMultiple' : 'hardMoveMultipleReverse',
+        veryHard: direction === 'Forward' ? 'veryHardMoveMultiple' : 'veryHardMoveMultipleReverse'
+      }[usedDifficulty];
+
+      // --- Tilt Angle Mapping by Difficulty ---
+      // Standard difficulty-to-angle mapping (degrees)
+      const difficultyAngles = {
+        easy: 0,
+        medium: 15,
+        hard: 30,
+        veryHard: 45
+      };
+      // For adaptive mode: track current adaptive level (0=easy, 1=medium, 2=hard, 3=veryhard)
+      let currentAdaptiveLevel = 1; // default to 'medium'
+      // Map usedDifficulty to adaptive level index if in adaptive mode
+      if (selections.difficulty === "adaptive") {
+        // Map currentDifficulty string to index
+        const adaptiveLevelMap = { easy: 0, medium: 1, hard: 2, veryHard: 3 };
+        currentAdaptiveLevel = adaptiveLevelMap[currentDifficulty] ?? 1;
+      }
+      // Adaptive angles array (degrees)
+      const adaptiveAngles = [0, 15, 30, 45];
+      // Determine the appropriate angle for this trial
+      let angle = 0;
+      if (selections.difficulty === "adaptive") {
+        angle = adaptiveAngles[currentAdaptiveLevel];
+      } else {
+        angle = difficultyAngles[usedDifficulty];
+      }
+      // Log the angle for visual confirmation
+      console.log("Tilt angle applied:", angle);
+
+      // Use absolute paths based on your GitHub Pages URL
+      const basePath = 'https://kaushikvada3.github.io/Perception_App_Kids_Version/Images';
+      const animalImageMap = {
+        turtle: `${basePath}/Turtle/turtle.jpeg`,
+        cat: `${basePath}/Cat/cat.jpeg`,
+        elephant: `${basePath}/Owl/owl_on_branch.jpeg`,
+        monkey: `${basePath}/Monkey/monkey_before_swing.jpeg`
+      };
+
+      const stimDuration = selections.stimDuration * 1000;
+
+      // Fixed spacing (ms between spawns) for all difficulties
+      const spawnGap = 500;  // adjust to taste
+
+      // Helper function to spawn one animal, uses fixed speed for animation duration
+      function spawnAnimal() {
+        activeAnimals++; // one more animal on screen
+        const img = document.createElement('img');
+        img.src = animalImageMap[selectedAnimal];
+        img.className = 'moving-animal';
+        img.style.top = `${Math.floor(Math.random() * 200) + 50}px`;
+
+        img.style.left = direction === 'Forward'
+          ? '-600px'
+          : '120%';
+
+        img.style.width = '220px';
+        // Calculate speed so that at stimDuration = 4 sec, animal crosses 1600px at constant speed.
+        const totalDistancePx = 1600;
+        const defaultStimDurationSec = 4;
+        const SPEED_PX_PER_SEC = totalDistancePx / defaultStimDurationSec;
+        const animationDuration = (totalDistancePx / SPEED_PX_PER_SEC) * 1000; // ms
+        img.style.animation = `${animClass} ${animationDuration}ms linear 0ms forwards`;
+        img.style.transform = `rotate(${angle}deg)`;
+        img.style.zIndex = 5;
+
+        waveContainer.appendChild(img);
+        img.addEventListener('animationend', () => {
+          activeAnimals--;
+          // Remove the DOM node so it doesn't accumulate
+          img.remove();
+          if (activeAnimals === 0 && !window.responseGiven && !countdownStarted) {
+            countdownStarted = true;
+            startResponseCountdown();
+          }
+        });
+      }
+
+      // Start spawning immediately, first animal gets full duration (now fixed speed)
+      spawnAnimal();
+
+      // --- Visual Distractor: Four lights per corner with color flashes ---
+      const lightsEnabled = document.getElementById('lightsToggleBtn').classList.contains('active');
+      if (lightsEnabled) {
+        // Remove any existing .corner-light from previous trials
+        document.querySelectorAll('.corner-light').forEach(el => el.remove());
+
+        // Arrange lights in 2x2 grids per corner
+        const corners = [
+          { baseTop: '10px', baseLeft: '10px' },    // Top-left
+          { baseTop: '10px', baseRight: '10px' },   // Top-right
+          { baseBottom: '10px', baseLeft: '10px' }, // Bottom-left
+          { baseBottom: '10px', baseRight: '10px' } // Bottom-right
+        ];
+        const cornerColors = [
+          ['red', 'yellow', 'orange'],
+          ['blue', 'cyan', 'aqua'],
+          ['green', 'lime', 'springgreen'],
+          ['purple', 'magenta', 'violet']
+        ];
+        let cornerLightIntervals = [];
+
+        corners.forEach((corner, i) => {
+          const colors = cornerColors[i];
+          for (let row = 0; row < 2; row++) {
+            for (let col = 0; col < 2; col++) {
+              const light = document.createElement('div');
+              light.className = 'corner-light';
+              Object.assign(light.style, {
+                position: 'absolute',
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                display: 'block',
+                backgroundColor: 'yellow',
+                boxShadow: '0 0 10px yellow'
+              });
+
+              if ('baseTop' in corner) light.style.top = `calc(${corner.baseTop} + ${row * 18}px)`;
+              if ('baseBottom' in corner) light.style.bottom = `calc(${corner.baseBottom} + ${row * 18}px)`;
+              if ('baseLeft' in corner) light.style.left = `calc(${corner.baseLeft} + ${col * 18}px)`;
+              if ('baseRight' in corner) light.style.right = `calc(${corner.baseRight} + ${col * 18}px)`;
+
+              waveContainer.appendChild(light);
+
+              const interval = setInterval(() => {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                light.style.backgroundColor = color;
+                light.style.boxShadow = `0 0 10px ${color}`;
+              }, 500 + Math.random() * 200);
+              cornerLightIntervals.push(interval);
+            }
+          }
+        });
+        // Show lights for 60% of the stimulus duration
+        const lightDuration = stimDuration * 0.6;
+        setTimeout(() => {
+          document.querySelectorAll('.corner-light').forEach(el => el.style.display = 'none');
+          // Clear intervals
+          cornerLightIntervals.forEach(interval => clearInterval(interval));
+        }, lightDuration);
+
+        // Preload and cache all background images once (only once)
+        if (!window.preloadedBackgrounds) {
+          window.preloadedBackgrounds = backgroundImages.map(src => {
+            const img = new Image();
+            img.src = src;
+            return img;
+          });
+        }
+
+        // Start from current image without resetting to index 0 (to avoid flash)
+        if (backgroundCycleInterval) clearInterval(backgroundCycleInterval);
+        backgroundCycleInterval = setInterval(() => {
+          document.body.style.backgroundImage = `url('${backgroundImages[currentBackgroundIndex]}')`;
+          currentBackgroundIndex = (currentBackgroundIndex + 1) % backgroundImages.length;
+        }, 600);
+      }
+      if (selections.soundOn) {
+        beepAudio.loop = true;
+        beepAudio.currentTime = 0;
+        setTimeout(() => {
+          beepAudio.play().catch(err => console.error("Audio play failed:", err));
+        }, 400);
+
+        const stimDurationMs = selections.stimDuration * 1000;
+        const soundDurationLimit = stimDurationMs * 0.66;
+
+        // Stop sound at 66% of stimDuration, accounting for delayed start
+        window.soundStopTimeout = setTimeout(() => {
+          beepAudio.pause();
+          beepAudio.currentTime = 0;
+          beepAudio.loop = false;
+        }, soundDurationLimit + 400);
+      }
+      // Stop distractors after 60% of the stimulus period
+      setTimeout(() => {
+        if (selections.soundOn) {
+          // (Sound is stopped by the timeout above, but as a backup:)
+          beepAudio.pause();
+          beepAudio.currentTime = 0;
+          beepAudio.loop = false;
+        }
+        if (lightsEnabled) {
+          // Reset background on the body, not wave-container's parent
+          document.body.style.backgroundImage = "url('Images/Background.jpeg')";
+          if (backgroundCycleInterval) {
+            clearInterval(backgroundCycleInterval);
+            backgroundCycleInterval = null;
+          }
+        }
+      }, (stimDuration * 0.6) + 400);
+      // Log distractor type for this trial
+      const distractorType = selections.soundOn && lightsEnabled
+        ? 'both'
+        : selections.soundOn
+          ? 'sound'
+          : lightsEnabled
+            ? 'visual'
+            : 'none';
+
+      // Keep spawning at regular intervals until stimDuration expires or user responds
+      const taskStart = Date.now();
+      spawnInterval = setInterval(() => {
+        const elapsed = Date.now() - taskStart;
+        const remaining = stimDuration - elapsed;
+
+        if (window.responseGiven || remaining <= 0) {
+          clearInterval(spawnInterval);
+          spawnInterval = null;
+          return;
+        }
+
+        // Spawn an animal at fixed speed
+        spawnAnimal();
+      }, spawnGap);
+
+      console.log(`Trial ${currentTry + 1}: Difficulty = ${usedDifficulty}`);
+      window.correctAnswer = direction === 'Forward' ? 'Q' : 'P';
+      currentTry++;
+
+      // Log distractor usage for this trial
+      trialResults.push({ type: distractorType, correct: false });
+
+      // No timeout-based countdown trigger needed; countdown starts after last animal's animationend.
+      document.getElementById('responseCountdown').textContent = '';
+
+      // Update task label with just the trial number if a separate label exists
+      const taskLabel = document.getElementById("taskLabel");
+      if (taskLabel) {
+        taskLabel.textContent = `${currentTry + 1}`;
+      }
+    }
+
+    // === FEEDBACK DISPLAY ===
+
+    // Plays the feedback image (correct or incorrect) after each trial
+    function showFeedbackImage(isCorrect) {
+      if (isQuitting) return;
+      const feedbackContainer = document.createElement('div');
+      feedbackContainer.style.position = 'fixed';
+      feedbackContainer.style.top = '50%';
+      feedbackContainer.style.left = '50%';
+      feedbackContainer.style.transform = 'translate(-50%, -50%)';
+      feedbackContainer.style.zIndex = '1000';
+      feedbackContainer.style.textAlign = 'center';
+      feedbackContainer.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+      feedbackContainer.style.padding = '30px';
+      feedbackContainer.style.borderRadius = '20px';
+      feedbackContainer.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+
+      const img = document.createElement('img');
+      img.src = isCorrect
+        ? `Feedback Images/image${Math.floor(Math.random() * 8) + 1}.jpg`
+        : 'Feedback Images/wrong.png';
+      img.style.width = '250px';
+      img.style.height = '250px';
+      img.style.borderRadius = '10px';
+
+      feedbackContainer.appendChild(img);
+      document.body.appendChild(feedbackContainer);
+
+      setTimeout(() => {
+        if (isQuitting) {
+          feedbackContainer.remove();
+          return;
+        }
+        feedbackContainer.remove();
+        runTask(); // Proceed to the next trial after feedback
+      }, selections.outcomeDuration * 1000); // Controlled by outcomeDuration
+    }
+
+    /* ------------- PDF EXPORT DISABLED -------------
+    async function exportResultsToPDF() {
+      // Wait a moment to ensure charts fully render
+      await new Promise(res => setTimeout(res, 500));
+
+      const target = document.getElementById('gameOver'); // capture gameOver + charts
+      const canvas = await html2canvas(target, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [canvas.width, canvas.height]
+      });
+
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save('SensorySafari_Results.pdf');
+    }
+    ------------- END PDF EXPORT DISABLED -------------*/
+
+    // === SESSION LOGGING TO FIREBASE ===
+
+    // Logs the current session's data to Firebase Firestore
+    async function logSessionToFirestore(playerName) {
+      try {
+        const totalCorrect = trialResults.filter(t => t.correct).length;
+        const formattedTrialDetails = trialResults.map((trial, i) => ({
+          trial: i + 1,
+          correct: trial.correct,
+          type: trial.type,
+          latency: trial.latency
+        }));
+
+        const correctGuessRight    = window.correctRight   || 0;
+        const inCorrectGuessRight  = window.incorrectRight || 0;
+        const correctGuessLeft     = window.correctLeft    || 0;
+        const inCorrectGuessLeft   = window.incorrectLeft  || 0;
+        const missedGuess          = (window.noResponseRight || 0) + (window.noResponseLeft || 0);
+
+        let fractHit = 0, fractCR = 0;
+        if (correctGuessRight + inCorrectGuessRight + missedGuess / 2 !== 0) {
+          fractHit = correctGuessRight / (correctGuessRight + inCorrectGuessRight + missedGuess / 2);
+        }
+        if (inCorrectGuessLeft + correctGuessLeft + missedGuess / 2 !== 0) {
+          fractCR = inCorrectGuessLeft / (inCorrectGuessLeft + correctGuessLeft + missedGuess / 2);
+        }
+
+        function norminv(p) {
+          if (p === 0) p = 0.1;
+          const a1 = -39.69683028665376;
+          const a2 = 220.9460984245205;
+          const a3 = -275.9285104469687;
+          const a4 = 138.357751867269;
+          const a5 = -30.66479806614716;
+          const a6 = 2.506628277459239;
+          const t = 1.0 / (1.0 + 0.2316419 * Math.abs(p));
+          const d = 0.3989422804014337 * Math.exp(-p * p / 2.0);
+          const x = ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t;
+          return 1 - d * x;
+        }
+
+        const dp1 = norminv(fractHit);
+        const dp2 = norminv(fractCR);
+        let dprime1;
+        if (fractHit === 0 && fractCR === 0 && totalCorrect === selections.numTries) {
+          dprime1 = 'max';
+        } else {
+          dprime1 = (dp1 - dp2).toFixed(3);
+        }
+
+        const userId = window.loggedInUser || loggedInUser;
+        if (!userId) throw new Error('No logged-in user; cannot log session.');
+
+        const userRef = db.collection('users').doc(userId);
+        // Ensure parent doc exists; safe to call repeatedly
+        await userRef.set({
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          sessionCount: firebase.firestore.FieldValue.increment(0)
+        }, { merge: true });
+
+        const snap = await userRef.get();
+        const currentCount = snap.exists ? (snap.data().sessionCount || 0) : 0;
+        const newCount = currentCount + 1;
+        const trialName = `Game #${newCount}`;
+
+        const sessionData = {
+          playerName: userId,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(), // for orderBy
+          timestampISO: new Date().toISOString(),
+          difficulty: selections.difficulty,
+          stimulusDuration: selections.stimDuration,
+          outcomeDuration: selections.outcomeDuration,
+          numTrials: selections.numTries,
+          score: `${totalCorrect} / ${selections.numTries}`,
+          trialDetails: formattedTrialDetails,
+          correctGuessRight: correctGuessRight,
+          inCorrectGuessRight: inCorrectGuessRight,
+          correctGuessLeft: correctGuessLeft,
+          inCorrectGuessLeft: inCorrectGuessLeft,
+          missedGuess: missedGuess,
+          metricScore: dprime1,
+          soundOn: selections.soundOn,
+          lightsOn: selections.lightsOn,
+          animal: selections.animal
+        };
+
+        await userRef.collection('sessions').doc(trialName).set(sessionData);
+        await userRef.update({ sessionCount: newCount });
+        console.log('✅ Session stored as:', trialName);
+      } catch (err) {
+        console.error('🔥 Firestore error while logging session:', err);
+        alert('Firestore error while saving your session: ' + (err && err.message ? err.message : err));
+      }
+    }
+    // --- End Firebase Firestore session logging ---
+
+    // === RESULTS VISUALIZATION ===
+
+    // --- Overall Results Page ---
+    async function viewOverallResults() {
+      try {
+        console.log('[Overall] opening results…');
+        document.getElementById('gameOver').style.display = 'none';
+        document.getElementById('overallResultsPage').style.display = 'block';
+        document.getElementById('chartContainer').style.display = 'none';
+
+        const userId = window.loggedInUser || loggedInUser;
+        console.log('[Overall] userId =', userId);
+        if (!userId) { alert('No user logged in.'); return; }
+
+        const tbody = document.getElementById('sessionDetailsBody');
+        tbody.innerHTML = '';
+
+        const qs = await db.collection('users').doc(userId)
+          .collection('sessions')
+          .orderBy('timestamp', 'desc')
+          .get();
+
+        console.log('[Overall] sessions found =', qs.size);
+
+        const labels = [], corrects = [], totals = [];
+
+        if (qs.empty) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td colspan="6" style="border:1px solid #ccc; padding:12px; text-align:center; color:#666;">No sessions yet. Finish one game to see history here.</td>`;
+          tbody.appendChild(tr);
+        } else {
+          let sessionNum = 1;
+          qs.forEach(doc => {
+            const d = doc.data() || {};
+            let correct = 0, total = 0;
+            if (typeof d.score === 'string' && d.score.includes('/')) {
+              const [c, t] = d.score.split('/');
+              correct = parseInt(c, 10) || 0;
+              total = parseInt(t, 10) || 0;
+            } else if (typeof d.numTrials === 'number') {
+              total = d.numTrials;
+            }
+            labels.push(`Session ${sessionNum}`);
+            corrects.push(correct);
+            totals.push(total);
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td style="border:1px solid #ccc; padding:8px;">${sessionNum}</td>
+              <td style="border:1px solid #ccc; padding:8px;">${d.difficulty || ''}</td>
+              <td style="border:1px solid #ccc; padding:8px;">${correct}</td>
+              <td style="border:1px solid #ccc; padding:8px;">${total}</td>
+              <td style="border:1px solid #ccc; padding:8px;">${d.stimulusDuration ?? ''}</td>
+              <td style="border:1px solid #ccc; padding:8px;">${d.outcomeDuration ?? ''}</td>`;
+            tbody.appendChild(tr);
+            sessionNum++;
+          });
+        }
+
+        const ctx = document.getElementById('overallResultsChart').getContext('2d');
+        if (window.overallResultsChartInstance) window.overallResultsChartInstance.destroy();
+        window.overallResultsChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels,
+            datasets: [
+              { label: 'Correct', data: corrects, backgroundColor: 'rgba(75, 192, 192, 0.7)' },
+              { label: 'Total Trials', data: totals, backgroundColor: 'rgba(180,180,180,0.4)' }
+            ]
+          },
+          options: { responsive: true, plugins: { title: { display: true, text: 'Session Performance (Correct per Session)', font: { size: 18 } } }, scales: { y: { beginAtZero: true } } }
+        });
+      } catch (err) {
+        console.error('[Overall] Firestore read error:', err);
+        alert("Can't load overall results (Firestore): " + (err && err.message ? err.message : err));
+      }
+    }
+
+    // Displays the results charts for the most recent session (per-distractor)
+    function displayResultsChart() {
+      const chartContainer = document.getElementById('chartContainer');
+      document.getElementById('gameOver').appendChild(chartContainer); // Append chart to game over section
+      chartContainer.style.display = 'block'; // Ensure the chart container is visible
+
+      // Group trial results by distractor type and in chunks of 5
+      const groupedResults = { none: [], sound: [], visual: [] };
+      trialResults.forEach((trial, index) => {
+        const groupKey = Math.floor(index / 5);
+        const types = [];
+        if (trial.type === 'both') {
+          types.push('sound', 'visual');
+        } else {
+          types.push(trial.type || 'none');
+        }
+        types.forEach(type => {
+          if (!groupedResults[type][groupKey]) {
+            groupedResults[type][groupKey] = { correct: 0, incorrect: 0 };
+          }
+          if (trial.correct) {
+            groupedResults[type][groupKey].correct++;
+          } else {
+            groupedResults[type][groupKey].incorrect++;
+          }
+        });
+      });
+
+      // Show no-distractor chart if no trials logged
+      const hasNone = trialResults.length === 0 || trialResults.some(tr => tr.type === 'none');
+      const hasSound = trialResults.some(tr => tr.type === 'sound' || tr.type === 'both');
+      const hasVisual = trialResults.some(tr => tr.type === 'visual' || tr.type === 'both');
+
+      // Hide canvases for types not played, show for those played
+      document.getElementById('noDistractorChart').style.display = hasNone ? 'block' : 'none';
+      document.getElementById('auditoryDistractorChart').style.display = hasSound ? 'block' : 'none';
+      document.getElementById('visualDistractorChart').style.display = hasVisual ? 'block' : 'none';
+
+      // Remove old interpretations/arrows before rendering new ones
+      ['noDistractorChart', 'auditoryDistractorChart', 'visualDistractorChart'].forEach(id => {
+        // Remove all elements with id=`${id}-interp` and the next sibling if it's a blue arrow
+        let interp = document.getElementById(`${id}-interp`);
+        while (interp) {
+          const next = interp.nextSibling;
+          interp.remove();
+          if (next && next.tagName === 'P' && next.textContent && next.textContent.includes('Increasing Difficulty')) {
+            next.remove();
+          }
+          interp = document.getElementById(`${id}-interp`);
+        }
+      });
+
+      // Pass difficulty mode to prepareChartData
+      const difficultyMode = selections.difficulty;
+      function prepareChartData(groupedData, difficultyMode) {
+        const labels = [];
+        const correctData = [];
+        const incorrectData = [];
+        groupedData.forEach((group, index) => {
+          let label;
+          if (difficultyMode === 'adaptive') {
+            const difficultyGroup = ['Easy', 'Medium', 'Hard', 'Very Hard'][index % 4];
+            label = `${difficultyGroup} difficulty`;
+          } else {
+            label = `${difficultyMode.charAt(0).toUpperCase() + difficultyMode.slice(1)} difficulty`;
+          }
+          labels.push(label);
+          correctData.push(group.correct);
+          incorrectData.push(group.incorrect);
+        });
+        return { labels, correctData, incorrectData };
+      }
+      const noDistractorData = prepareChartData(groupedResults.none, selections.difficulty);
+      const auditoryDistractorData = prepareChartData(groupedResults.sound, selections.difficulty);
+      const visualDistractorData = prepareChartData(groupedResults.visual, selections.difficulty);
+
+      // Only render charts for distractor types that were played
+      if (hasNone) {
+        renderChart('noDistractorChart', 'No Distractors', noDistractorData, 'Sensory Threshold (2)');
+      }
+      if (hasSound) {
+        renderChart('auditoryDistractorChart', 'Auditory Distractors', auditoryDistractorData, 'Attention Threshold (2)');
+      }
+      if (hasVisual) {
+        renderChart('visualDistractorChart', 'Visual Distractors', visualDistractorData, 'Attention Threshold (2)');
+      }
+    }
+
+    // Renders a single chart for a given distractor type (correct/incorrect per group)
+    function renderChart(canvasId, title, data, thresholdLabel) {
+      // Remove old interpretation and arrow if present (done by displayResultsChart, but in case of rerender)
+      let interp = document.getElementById(`${canvasId}-interp`);
+      while (interp) {
+        const next = interp.nextSibling;
+        interp.remove();
+        if (next && next.tagName === 'P' && next.textContent && next.textContent.includes('Increasing Difficulty')) {
+          next.remove();
+        }
+        interp = document.getElementById(`${canvasId}-interp`);
+      }
+
+      // Destroy any existing Chart instance for this canvas to avoid "Canvas is already in use" error
+      const existingChart = Chart.getChart(canvasId);
+      if (existingChart) {
+        existingChart.destroy();
+      }
+
+      // Calculate total correct and determine interpretation (consistent mapping)
+      const totalCorrect = data.correctData.reduce((a, b) => a + b, 0);
+      let interpretationText = "";
+      let interpColor = "green";
+      if (canvasId === 'noDistractorChart') {
+        if (totalCorrect > 2) {
+          interpretationText = "";
+          interpColor = "green";
+        } else {
+          interpretationText = "";
+          interpColor = "red";
+        }
+      } else if (canvasId === 'auditoryDistractorChart') {
+        if (totalCorrect > 2) {
+          interpretationText = "";
+          interpColor = "green";
+        } else {
+          interpretationText = "";
+          interpColor = "red";
+        }
+      } else if (canvasId === 'visualDistractorChart') {
+        if (totalCorrect > 2) {
+          interpretationText = "";
+          interpColor = "green";
+        } else {
+          interpretationText = "";
+          interpColor = "red";
+        }
+      }
+
+      const ctx = document.getElementById(canvasId).getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: data.labels,
+          datasets: [
+            {
+              label: 'Correct',
+              data: data.correctData,
+              backgroundColor: 'rgba(75, 192, 192, 0.6)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'Incorrect',
+              data: data.incorrectData,
+              backgroundColor: 'rgba(255, 99, 132, 0.6)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1,
+            }
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: `${title} (${selections.difficulty === 'adaptive' ? 'Increasing Difficulty' : selections.difficulty.charAt(0).toUpperCase() + selections.difficulty.slice(1) + ' difficulty'})`,
+              font: { size: 18 },
+            },
+            annotation: {
+              annotations: {
+                threshold: {
+                  type: 'line',
+                  yMin: 2,
+                  yMax: 2,
+                  borderColor: 'green',
+                  borderWidth: 2,
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      // Add interpretation text and arrow below the chart canvas
+      const canvasEl = document.getElementById(canvasId);
+      const interpP = document.createElement('p');
+      interpP.id = `${canvasId}-interp`;
+      interpP.style.color = interpColor;
+      interpP.style.fontWeight = 'bold';
+      interpP.style.marginTop = "10px";
+      interpP.style.marginBottom = "8px";
+      interpP.textContent = interpretationText;
+
+      // Arrow label below interpretation
+      const arrow = document.createElement('p');
+      arrow.style.color = 'blue';
+      arrow.style.fontSize = '0.95em';
+      arrow.style.marginTop = '2px';
+      arrow.style.marginBottom = '18px';
+      arrow.textContent = '';
+
+      // Place interp and arrow directly after the canvas (interp below chart, arrow below interp)
+      canvasEl.parentNode.insertBefore(interpP, canvasEl.nextSibling);
+      canvasEl.parentNode.insertBefore(arrow, interpP.nextSibling);
+    }
+
+    // Toggles sound distractor on/off in settings
+    function toggleSound() {
+      const btn = document.getElementById('soundToggleBtn');
+      btn.classList.toggle('active');
+      if (btn.classList.contains('active')) {
+        btn.textContent = 'Sound On';
+        document.getElementById('soundIcon').style.display = 'inline-block';
+      } else {
+        btn.textContent = 'Play Sound?';
+        document.getElementById('soundIcon').style.display = 'none';
+      }
+    }
+
+    // Shows the feedback form (after game over)
+    function showFeedbackForm() {
+      document.getElementById('gameOver').style.display = 'none';
+      document.getElementById('feedbackForm').style.display = 'block';
+    }
+
+    // Submits user feedback (placeholder)
+    function submitFeedback() {
+      alert("Feedback submitted! Thank you.");
+      // Here you can collect form data and send it to a server or database.
+    }
+    // Toggles visual distractor (blinking lights) on/off in settings
+    function toggleLights() {
+      const btn = document.getElementById('lightsToggleBtn');
+      btn.classList.toggle('active');
+      const bulbs = document.querySelectorAll('.corner-light');
+      if (btn.classList.contains('active')) {
+        btn.textContent = 'Lights On';
+        bulbs.forEach(bulb => bulb.style.display = 'block');
+      } else {
+        btn.textContent = 'Lights Off?';
+        bulbs.forEach(bulb => bulb.style.display = 'none');
+        if (backgroundCycleInterval !== null) {
+          clearInterval(backgroundCycleInterval);
+          backgroundCycleInterval = null;
+          currentBackgroundIndex = 0;
+          // Remove dynamic background from body
+          document.body.style.backgroundImage = "url('Images/Background.jpeg')";
+        }
+      }
+    }
+
+    // Quits the game and returns to the home screen, resetting state
+    function quitGame() {
+      // Hide the test/game over screens, show the home screen
+      isQuitting = true;
+      document.getElementById('test').style.display = 'none';
+      document.getElementById('gameOver').style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+      // Optionally reset game state (but do not sign out user or reload)
+      resetGameState();
+      // Ensure sign out button remains visible if user is logged in
+      document.getElementById("signOutBtn").style.display = "block";
+    }
+
+    // Resets all relevant game state variables to allow a fresh game
+    function resetGameState() {
+      isQuitting = false;
+      currentTry = 0;
+      score = 0;
+      performanceTracker = [];
+      currentDifficulty = 'medium';
+      document.getElementById('score').textContent = 'Score: 0';
+      document.getElementById('responseCountdown').textContent = '';
+      document.getElementById('wave-container').innerHTML = '';
+      document.getElementById('finalScore').textContent = 'Score: 0 / 0 | Metric: N/A';
+      trialResults = [];
+      distractorLog = [];
+      // Hide charts without removing canvases
+      const chartContainer = document.getElementById('chartContainer');
+      if (chartContainer) chartContainer.style.display = 'none';
+      animalsFinished = 0;
+      // Step 4: Reset totalTries to 0
+      totalTries = 0;
+      // Also clear any spawn interval
+      if (spawnInterval) {
+        clearInterval(spawnInterval);
+        spawnInterval = null;
+      }
+      activeAnimals = 0;
+      countdownStarted = false;
+      // Always reset body background to default after game resets
+      document.body.style.backgroundImage = "url('Images/Background.jpeg')";
+    }
+
+    // Resets state and returns to the home screen after a game ends
+    function resetGameAndStart() {
+      resetGameState();
+      document.getElementById('gameOver').style.display = 'none';
+      document.getElementById('home').style.display = 'block';
+      // Ensure sign out button remains visible
+      document.getElementById("signOutBtn").style.display = "block";
+    }
+
+    // Signs out the current user and returns to the login screen
+    function signOut() {
+      loggedInUser = null;
+      // Hide sign out button
+      document.getElementById("signOutBtn").style.display = "none";
+      // Show login, hide game
+      document.getElementById("loginContainer") && (document.getElementById("loginContainer").style.display = "block");
+      document.getElementById("gameContainer") && (document.getElementById("gameContainer").style.display = "none");
+      // Hide home/game screens
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('gameOver').style.display = 'none';
+      document.getElementById('authContainer').style.display = 'block';
+      // Reset any other relevant data here
+      resetGameState();
+    }
+  window.quitGame = quitGame;
+
+    // === UTILITY: EVENT LISTENERS AND DOM HOOKS ===
+
+    // Bind Quit button, password masking, and Enter key login after DOM loads
+    document.addEventListener("DOMContentLoaded", () => {
+      // Bind quit button event
+      const quitBtn = document.querySelector("#test button[onclick='quitGame()']");
+      if (quitBtn) {
+        quitBtn.addEventListener("click", quitGame);
+      }
+      // Masked typing for password fields
+      handleMaskedTyping(document.getElementById('authPassword'));
+      handleMaskedTyping(document.getElementById('regPassword'));
+
+      // Add Enter key login support
+      const loginForm = document.getElementById("login-form");
+      const loginButton = document.getElementById("login-btn");
+      if (loginForm && loginButton) {
+        loginForm.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission if needed
+            loginButton.click();    // Trigger the login
+          }
+        });
+      }
+      // Add goBackButton event for overallResultsPage
+      const goBackBtn = document.getElementById("goBackButton");
+      if (goBackBtn) {
+        goBackBtn.addEventListener("click", () => {
+          document.getElementById("overallResultsPage").style.display = "none";
+          document.getElementById("home").style.display = "block";
+        });
+      }
+    });
+    // === RESULTS VISUALIZATION: OVERALL SESSION HISTORY ===
+
+    // Shows the overall session history results page
+    function viewOverallResults() {
+      document.getElementById("gameOver").style.display = "none";
+      document.getElementById("overallResultsPage").style.display = "block";
+      loadOverallResults();
+    }
+
+    // Returns from the overall results page to the end screen
+    function returnToEndScreen() {
+      document.getElementById("overallResultsPage").style.display = "none";
+      document.getElementById("gameOver").style.display = "block";
+    }
+
+    // Loads and renders the overall session history from Firestore for the user
+    function loadOverallResults() {
+    const ctx = document.getElementById('overallResultsChart').getContext('2d');
+    // Debug log at start of loading sessions
+    console.log("Attempting to load sessions for:", loggedInUser);
+    db.collection("users").doc(loggedInUser).collection("sessions").get().then(snapshot => {
+      if (snapshot.empty) {
+        console.log("No session history found for user:", loggedInUser);
+        document.getElementById("overallResultsPage").innerHTML += `
+          <p style="text-align:center; font-size:1.2em; color:black; margin-top:40px;">
+            No session data found. Play a game first and return here!
+          </p>
+        `;
+        return;
+      }
+      // Sort session docs numerically so Trial #10 comes after Trial #9
+      const sortedDocs = snapshot.docs.slice().sort((a, b) => {
+        const aNum = parseInt(a.id.match(/\d+/)[0]);
+        const bNum = parseInt(b.id.match(/\d+/)[0]);
+        return aNum - bNum;
+      });
+      const labels = [], scores = [], difficulties = [], trials = [],
+        stimTimes = [], outcomeTimes = [], accuracies = [];
+      // New metric arrays
+      const correctGuessRights = [], inCorrectGuessRights = [], correctGuessLefts = [],
+        inCorrectGuessLefts = [], missedGuesses = [], metricScores = [];
+
+      sortedDocs.forEach(doc => {
+        const data = doc.data();
+        const gameId = doc.id.replace("Trial", "Game");
+        labels.push(`${gameId} (${data.difficulty.charAt(0).toUpperCase() + data.difficulty.slice(1)})`);
+        const correct = parseInt(data.score.split("/")[0]);
+        const total = parseInt(data.score.split("/")[1]);
+        scores.push(correct);
+        difficulties.push(data.difficulty);
+        trials.push(data.numTrials || total || 0);
+        stimTimes.push(data.stimulusDuration || 0);
+        outcomeTimes.push(data.outcomeDuration || 0);
+        // Compute accuracy as (Correct Answers / Total Trials) * 100
+        let acc = 0;
+        if (total && !isNaN(correct) && !isNaN(total) && total > 0) acc = (correct / total) * 100;
+        else if (data.numTrials && data.numTrials > 0) acc = (correct / data.numTrials) * 100;
+        accuracies.push(Number.isFinite(acc) ? acc : 0);
+        // Extract and store new metrics
+        correctGuessRights.push(data.correctGuessRight !== undefined ? data.correctGuessRight : '');
+        inCorrectGuessRights.push(data.inCorrectGuessRight !== undefined ? data.inCorrectGuessRight : '');
+        correctGuessLefts.push(data.correctGuessLeft !== undefined ? data.correctGuessLeft : '');
+        inCorrectGuessLefts.push(data.inCorrectGuessLeft !== undefined ? data.inCorrectGuessLeft : '');
+        missedGuesses.push(data.missedGuess !== undefined ? data.missedGuess : '');
+        metricScores.push(data.metricScore !== undefined ? data.metricScore : '');
+      });
+
+      // Unique color for each line dataset
+      const colorTotalTrials = 'rgba(0, 123, 255, 1)';
+      const colorStimulus = 'rgba(40, 167, 69, 1)';
+      const colorOutcome = 'rgba(220, 53, 69, 1)';
+      const colorAccuracy = 'rgba(156, 39, 176, 1)';
+
+      // Remove previous chart if exists
+      if (window._overallResultsChart) {
+        window._overallResultsChart.destroy();
+      }
+      window._overallResultsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Correct Answers',
+              data: scores,
+              backgroundColor: 'rgba(255, 193, 7, 0.8)',
+              borderColor: 'rgba(255, 193, 7, 1)',
+              borderWidth: 1,
+              type: 'bar',
+              yAxisID: 'y'
+            },
+            {
+              label: 'Total Trials',
+              data: trials,
+              backgroundColor: 'rgba(0, 123, 255, 0.13)',
+              borderColor: colorTotalTrials,
+              borderWidth: 2,
+              type: 'line',
+              fill: false,
+              yAxisID: 'y2',
+              pointStyle: 'circle',
+              tension: 0.2
+            },
+            {
+              label: 'Stimulus Duration (sec)',
+              data: stimTimes,
+              backgroundColor: 'rgba(40, 167, 69, 0.13)',
+              borderColor: colorStimulus,
+              borderWidth: 2,
+              type: 'line',
+              fill: false,
+              yAxisID: 'y1',
+              pointStyle: 'triangle',
+              tension: 0.2
+            },
+            {
+              label: 'Outcome Duration (sec)',
+              data: outcomeTimes,
+              backgroundColor: 'rgba(220, 53, 69, 0.13)',
+              borderColor: colorOutcome,
+              borderWidth: 2,
+              type: 'line',
+              fill: false,
+              yAxisID: 'y1',
+              pointStyle: 'rectRot',
+              tension: 0.2
+            },
+            {
+              label: 'Accuracy (%)',
+              data: accuracies,
+              backgroundColor: 'rgba(156, 39, 176, 0.13)',
+              borderColor: colorAccuracy,
+              borderWidth: 2,
+              type: 'line',
+              fill: false,
+              yAxisID: 'y2',
+              pointStyle: 'star',
+              tension: 0.2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Your Trial History with Session Metrics',
+              font: { size: 20 }
+            },
+            tooltip: {
+              callbacks: {
+                afterLabel: function(context) {
+                  // Show all session attributes in the tooltip
+                  const idx = context.dataIndex;
+                  // Defensive: Check arrays length
+                  const diff = difficulties[idx] || '';
+                  const stim = stimTimes[idx] !== undefined ? stimTimes[idx] : '';
+                  const outc = outcomeTimes[idx] !== undefined ? outcomeTimes[idx] : '';
+                  const ntrials = trials[idx] !== undefined ? trials[idx] : '';
+                  const acc = accuracies[idx] !== undefined ? accuracies[idx] : '';
+                  return [
+                    `Difficulty: ${diff}`,
+                    `Stimulus Duration: ${stim}s`,
+                    `Outcome Duration: ${outc}s`,
+                    `Total Trials: ${ntrials}`,
+                    `Accuracy: ${acc.toFixed(1)}%`
+                  ];
+                }
+              }
+            },
+            legend: {
+              display: true,
+              labels: {
+                // Use default color
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Correct Answers' }
+            },
+            y1: {
+              beginAtZero: true,
+              position: 'right',
+              title: { display: true, text: 'Durations (sec)' },
+              grid: { drawOnChartArea: false }
+            },
+            y2: {
+              beginAtZero: true,
+              position: 'right',
+              title: { display: true, text: 'Trials / Accuracy (%)' },
+              grid: { drawOnChartArea: false },
+              // For accuracy, max 100
+              min: 0,
+              max: 100,
+              ticks: {
+                callback: function(value, index, values) {
+                  return value;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Populate session summary table
+      const tableBody = document.getElementById("sessionDetailsBody");
+      tableBody.innerHTML = ""; // Clear any previous entries
+      sortedDocs.forEach((doc, i) => {
+        const data = doc.data();
+        const correct = parseInt(data.score.split("/")[0]);
+        const total = parseInt(data.score.split("/")[1]);
+        const accuracy = (total && total > 0) ? ((correct / total) * 100).toFixed(1) : (data.numTrials && data.numTrials > 0 ? ((correct / data.numTrials) * 100).toFixed(1) : '0.0');
+        // Get new metrics for this session
+        const cgr = data.correctGuessRight !== undefined ? data.correctGuessRight : '';
+        const icgr = data.inCorrectGuessRight !== undefined ? data.inCorrectGuessRight : '';
+        const cgl = data.correctGuessLeft !== undefined ? data.correctGuessLeft : '';
+        const icgl = data.inCorrectGuessLeft !== undefined ? data.inCorrectGuessLeft : '';
+        const missed = data.missedGuess !== undefined ? data.missedGuess : '';
+        const metric = data.metricScore !== undefined ? data.metricScore : '';
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td style="border: 1px solid #ccc; padding: 8px;">${doc.id}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${data.difficulty}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${correct}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${data.numTrials || total || ''}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${data.stimulusDuration}s</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${data.outcomeDuration}s</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${cgr}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${icgr}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${cgl}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${icgl}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${missed}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${metric}</td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${accuracy}%</td>
+        `;
+        tableBody.appendChild(row);
+      });
+      // Expand/add header columns for new metrics if not present
+      const thead = document.querySelector("#sessionDetails thead tr");
+      // Only add if not already present
+      if (thead && thead.children.length < 13) {
+        // Remove any extra headers (if any) to avoid duplication
+        while (thead.children.length > 6) {
+          thead.removeChild(thead.lastChild);
+        }
+        const headers = [
+          "Correct →", "Incorrect →", "Correct ←", "Incorrect ←", "Missed", "Metric Score", "Accuracy (%)"
+        ];
+        headers.forEach(h => {
+          const th = document.createElement('th');
+          th.style.border = "1px solid #ccc";
+          th.style.padding = "8px";
+          th.textContent = h;
+          thead.appendChild(th);
+        });
+      }
+    });
+  }
+  // --------- END OVERALL RESULTS FUNCTIONS ---------
+  </script>
+  <div class="container" id="feedbackForm" style="display:none;">
+    <h2 style="text-align:center; color:white;">Feedback Form</h2>
+    <input type="text" placeholder="Name" style="width:100%; margin-bottom:10px; padding:10px; font-size: 1em; background-color: #fff; color: #000;" />
+    <input type="number" placeholder="Age" style="width:100%; margin-bottom:10px; padding:10px; font-size: 1em; background-color: #fff; color: #000;" />
+    <select style="width:100%; margin-bottom:10px; padding:10px; font-size: 1em; background-color: #fff; color: #000;">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <input type="date" style="width:100%; margin-bottom:10px; padding:10px; font-size: 1em; background-color: #fff; color: #000;" />
+    <input type="text" placeholder="Current Medication" style="width:100%; margin-bottom:10px; padding:10px; font-size: 1em; background-color: #fff; color: #000;" />
+    <button onclick="submitFeedback()" style="width:100%; background-color:#1E90FF; color:white; padding:10px; font-size: 1em; border:none; border-radius:5px;">Submit Feedback</button>
+  </div>
+  <div id="howItWorksModal" style="display:none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); padding: 20px; border-radius: 12px; z-index: 10000; max-width: 90%; max-height: 80%; overflow-y: auto;">
+    <div style="background: #222; padding: 24px 20px; border-radius: 10px; max-width: 540px; margin: 0 auto; color: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.4);">
+      <h2>📘 How the Game Works</h2>
+      <h3>🔹 1. Difficulty Levels</h3>
+      <p>Each difficulty level controls how tilted the animal appears:</p>
+      <ul>
+        <li><strong>Easy:</strong> -45° (Very obvious direction)</li>
+        <li><strong>Medium:</strong> -22.5° (Moderate tilt)</li>
+        <li><strong>Difficult:</strong> -9.5° (Slight tilt)</li>
+        <li><strong>Adaptive:</strong> Adjusts dynamically as the player performs better or worse</li>
+      </ul>
+
+      <h3>🔹 2. How Animals Move</h3>
+      <p>Animals move horizontally across the screen, but their container is rotated, creating a diagonal movement illusion.</p>
+      <ul>
+        <li><strong>Direction = Q:</strong> Left</li>
+        <li><strong>Direction = P:</strong> Right</li>
+      </ul>
+
+      <h3>🔹 3. What Controls Difficulty</h3>
+      <p>Difficulty dynamically updates based on how many responses were correct or incorrect in a row (2 correct increases difficulty, 2 wrong decreases it).</p>
+
+      <h3>🔹 4. Key Mechanics</h3>
+      <ul>
+        <li><strong>ang:</strong> Rotation of the animal container</li>
+        <li><strong>x:</strong> Array of positions for the animal</li>
+        <li><strong>barWidth:</strong> Width of the animal image</li>
+        <li><strong>direction:</strong> 1 for left, -1 for right</li>
+      </ul>
+
+      <h3>🔹 5. What You Experience</h3>
+      <ol>
+        <li>Animal slides diagonally</li>
+        <li>Guess direction with P or Q</li>
+        <li>Feedback is given instantly</li>
+        <li>Chart at the end shows your performance</li>
+      </ol>
+      <button onclick="toggleHowItWorks()" style="margin-top: 15px; background-color: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 8px;">Close</button>
+    </div>
+  </div>
+  <!-- Original How It Works container (now hidden, for accessibility fallback) -->
+  <div id="howItWorks" class="container" style="display:none;">
+    <h2>📘 How the Game Works</h2>
+    <h3>🔹 1. Difficulty Levels</h3>
+    <p>Each difficulty level controls how tilted the animal appears:</p>
+    <ul>
+      <li><strong>Easy:</strong> -45° (Very obvious direction)</li>
+      <li><strong>Medium:</strong> -22.5° (Moderate tilt)</li>
+      <li><strong>Difficult:</strong> -9.5° (Slight tilt)</li>
+      <li><strong>Adaptive:</strong> Adjusts dynamically as the player performs better or worse</li>
+    </ul>
+    <h3>🔹 2. How Animals Move</h3>
+    <p>Animals move horizontally across the screen, but their container is rotated, creating a diagonal movement illusion.</p>
+    <ul>
+      <li><strong>Direction = Q:</strong> Left</li>
+      <li><strong>Direction = P:</strong> Right</li>
+    </ul>
+    <h3>🔹 3. What Controls Difficulty</h3>
+    <p>Difficulty dynamically updates based on how many responses were correct or incorrect in a row (2 correct increases difficulty, 2 wrong decreases it).</p>
+    <h3>🔹 4. Key Mechanics</h3>
+    <ul>
+      <li><strong>ang:</strong> Rotation of the animal container</li>
+      <li><strong>x:</strong> Array of positions for the animal</li>
+      <li><strong>barWidth:</strong> Width of the animal image</li>
+      <li><strong>direction:</strong> 1 for left, -1 for right</li>
+    </ul>
+    <h3>🔹 5. What You Experience</h3>
+    <ol>
+      <li>Animal slides diagonally</li>
+      <li>Guess direction with P or Q</li>
+      <li>Feedback is given instantly</li>
+      <li>Chart at the end shows your performance</li>
+    </ol>
+  </div>
+  <script>
+    function toggleHowItWorks() {
+      const modal = document.getElementById('howItWorksModal');
+      if (modal.style.display === 'none' || modal.style.display === '') {
+        modal.style.display = 'block';
+      } else {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>

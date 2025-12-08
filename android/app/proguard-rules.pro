@@ -1,0 +1,7 @@
+-keep class io.flutter.** { *; }
+-keep class io.flutter.plugins.GeneratedPluginRegistrant { *; }
+-keep class com.google.firebase.** { *; }
+-keep class io.sentry.** { *; }
+-dontwarn io.flutter.**
+-dontwarn com.google.firebase.**
+-keepattributes SourceFile,LineNumberTable

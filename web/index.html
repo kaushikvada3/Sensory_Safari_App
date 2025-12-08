@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="sensory_safari_flutter">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>sensory_safari_flutter</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background-color: #000;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      touch-action: pan-y;
+    }
+
+    #app,
+    #flutter_container,
+    #wave-container,
+    flt-glass-pane,
+    .flt-glass-pane,
+    canvas {
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      overflow: hidden;
+    }
+
+    :root {
+      --ui-scale: min(1, 100vw / 430);
+    }
+
+    .controls,
+    .hud {
+      font-size: calc(16px * var(--ui-scale));
+    }
+
+    .button {
+      padding: calc(8px * var(--ui-scale)) calc(12px * var(--ui-scale));
+    }
+
+    @media (max-width: 400px), (max-height: 700px) {
+      .controls {
+        gap: 6px;
+      }
+
+      .slider-label {
+        display: none;
+      }
+
+      .chart,
+      .timeline {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
