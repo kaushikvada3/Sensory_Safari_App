@@ -266,6 +266,42 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
     }
   }
 
+  Future<void> _enterDemoMode() async {
+    if (_busy) return;
+    setState(() { _busy = true; _errorMessage = null; });
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('playerName', 'Demo User');
+      await prefs.setString('loggedInUser', 'Demo User');
+    } catch (_) {
+      // ignore errors if prefs fail, we still want to let them in
+    }
+
+    if (!mounted) return;
+    setState(() { _busy = false; });
+    widget.onComplete();
+  }
+
+  Future<void> _resetLoginFields() async {
+    _usernameController.clear();
+    _passwordController.clear();
+    _confirmController.clear();
+    
+    // Also clear session data to be safe
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('playerName');
+      await prefs.remove('loggedInUser');
+      await FirebaseAuth.instance.signOut();
+    } catch (_) {}
+
+    setState(() {
+      _errorMessage = null;
+      _isSignUp = false; 
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -512,10 +548,34 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                         ),
                       ),
 
-                      const SizedBox(height: 14),
-                      const Text(
-                        '',
-                        style: TextStyle(color: Colors.white70),
+                      const SizedBox(height: 20),
+
+                      // Demo Mode Button
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: OutlinedButton(
+                          onPressed: _enterDemoMode,
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            side: const BorderSide(color: Colors.white70),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+                          ),
+                          child: const Text('Enter Demo Mode (No Login)'),
+                        ),
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      // Reset Fields Button
+                      Center(
+                        child: TextButton(
+                          onPressed: _resetLoginFields,
+                          child: const Text(
+                            'Reset Login Information',
+                            style: TextStyle(color: Colors.white70, decoration: TextDecoration.underline),
+                          ),
+                        ),
                       ),
                     ],
                   ),
