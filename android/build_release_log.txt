@@ -1,0 +1,375 @@
+> Task :gradle:checkKotlinGradlePluginConfigurationErrors
+> Task :gradle:compileKotlin UP-TO-DATE
+> Task :gradle:compileJava NO-SOURCE
+> Task :gradle:compileGroovy NO-SOURCE
+> Task :gradle:pluginDescriptors UP-TO-DATE
+> Task :gradle:processResources UP-TO-DATE
+> Task :gradle:classes UP-TO-DATE
+> Task :gradle:jar UP-TO-DATE
+
+> Configure project :app
+Warning: Flutter support for your project's Kotlin version (1.9.20) will soon be dropped. Please upgrade your Kotlin version to a version of at least 2.1.0 soon.
+Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+
+Potential fix: Your project's KGP version is typically defined in the plugins block of the `settings.gradle` file (C:\Users\kaush\Documents\Sensory_Safari_App\android/settings.gradle), by a plugin with the id of org.jetbrains.kotlin.android. 
+If you don't see a plugins block, your project was likely created with an older template version, in which case it is most likely defined in the top-level build.gradle file (C:\Users\kaush\Documents\Sensory_Safari_App\android/build.gradle) by the ext.kotlin_version property.
+
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :audioplayers_android:checkKotlinGradlePluginConfigurationErrors
+> Task :audioplayers_android:preBuild UP-TO-DATE
+> Task :audioplayers_android:preReleaseBuild UP-TO-DATE
+> Task :audioplayers_android:generateReleaseResValues
+> Task :app:generateReleaseFeatureMetadata
+> Task :audioplayers_android:generateReleaseResources
+> Task :audioplayers_android:packageReleaseResources
+> Task :cloud_firestore:preBuild UP-TO-DATE
+> Task :cloud_firestore:preReleaseBuild UP-TO-DATE
+> Task :audioplayers_android:javaPreCompileRelease
+> Task :cloud_firestore:generateReleaseBuildConfig
+> Task :cloud_firestore:generateReleaseResValues
+> Task :cloud_firestore:generateReleaseResources
+> Task :audioplayers_android:parseReleaseLocalResources
+> Task :cloud_firestore:packageReleaseResources
+> Task :firebase_core:preBuild UP-TO-DATE
+> Task :firebase_core:preReleaseBuild UP-TO-DATE
+> Task :cloud_firestore:javaPreCompileRelease
+> Task :cloud_firestore:parseReleaseLocalResources
+> Task :firebase_core:generateReleaseBuildConfig
+> Task :firebase_core:generateReleaseResValues
+> Task :firebase_core:generateReleaseResources
+> Task :cloud_firestore:generateReleaseRFile
+> Task :audioplayers_android:generateReleaseRFile
+> Task :firebase_core:packageReleaseResources
+> Task :firebase_auth:preBuild UP-TO-DATE
+> Task :firebase_auth:preReleaseBuild UP-TO-DATE
+> Task :firebase_core:parseReleaseLocalResources
+> Task :firebase_core:javaPreCompileRelease
+> Task :firebase_auth:generateReleaseBuildConfig
+> Task :firebase_auth:generateReleaseResValues
+> Task :firebase_auth:generateReleaseResources
+> Task :firebase_core:generateReleaseRFile
+> Task :firebase_auth:packageReleaseResources
+> Task :firebase_core:compileReleaseJavaWithJavac
+> Task :firebase_auth:javaPreCompileRelease
+> Task :firebase_auth:parseReleaseLocalResources
+> Task :firebase_core:mergeReleaseGeneratedProguardFiles
+> Task :firebase_auth:generateReleaseRFile
+> Task :path_provider_android:preBuild UP-TO-DATE
+> Task :path_provider_android:preReleaseBuild UP-TO-DATE
+> Task :firebase_core:exportReleaseConsumerProguardFiles
+> Task :path_provider_android:generateReleaseResValues
+> Task :path_provider_android:generateReleaseResources
+> Task :firebase_core:bundleLibCompileToJarRelease
+> Task :path_provider_android:packageReleaseResources
+> Task :cloud_firestore:compileReleaseJavaWithJavac
+> Task :cloud_firestore:mergeReleaseGeneratedProguardFiles
+> Task :cloud_firestore:exportReleaseConsumerProguardFiles
+
+> Task :firebase_auth:compileReleaseJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :firebase_auth:mergeReleaseGeneratedProguardFiles
+> Task :firebase_auth:exportReleaseConsumerProguardFiles
+> Task :shared_preferences_android:checkKotlinGradlePluginConfigurationErrors
+> Task :shared_preferences_android:preBuild UP-TO-DATE
+> Task :shared_preferences_android:preReleaseBuild UP-TO-DATE
+> Task :path_provider_android:parseReleaseLocalResources
+> Task :path_provider_android:javaPreCompileRelease
+> Task :shared_preferences_android:generateReleaseResValues
+> Task :shared_preferences_android:generateReleaseResources
+> Task :path_provider_android:generateReleaseRFile
+> Task :shared_preferences_android:packageReleaseResources
+> Task :path_provider_android:compileReleaseJavaWithJavac
+> Task :path_provider_android:mergeReleaseGeneratedProguardFiles
+> Task :path_provider_android:exportReleaseConsumerProguardFiles
+> Task :shared_preferences_android:parseReleaseLocalResources
+> Task :shared_preferences_android:javaPreCompileRelease
+> Task :app:buildKotlinToolingMetadata
+> Task :shared_preferences_android:generateReleaseRFile
+
+> Task :audioplayers_android:compileReleaseKotlin
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:218)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:175)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:135)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:73)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:218)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:175)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:135)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:73)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists.
+
+> Task :app:compileFlutterBuildRelease
+> Task :audioplayers_android:compileReleaseJavaWithJavac NO-SOURCE
+> Task :audioplayers_android:mergeReleaseGeneratedProguardFiles
+> Task :audioplayers_android:exportReleaseConsumerProguardFiles
+> Task :app:packJniLibsflutterBuildRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :cloud_firestore:writeReleaseAarMetadata
+> Task :audioplayers_android:writeReleaseAarMetadata
+> Task :firebase_auth:writeReleaseAarMetadata
+> Task :firebase_core:writeReleaseAarMetadata
+> Task :path_provider_android:writeReleaseAarMetadata
+> Task :app:cleanMergeReleaseAssets UP-TO-DATE
+> Task :shared_preferences_android:writeReleaseAarMetadata
+> Task :app:mergeReleaseShaders
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :audioplayers_android:mergeReleaseShaders
+> Task :audioplayers_android:compileReleaseShaders NO-SOURCE
+> Task :audioplayers_android:generateReleaseAssets UP-TO-DATE
+> Task :audioplayers_android:packageReleaseAssets
+> Task :app:checkReleaseAarMetadata
+> Task :cloud_firestore:mergeReleaseShaders
+> Task :cloud_firestore:compileReleaseShaders NO-SOURCE
+> Task :cloud_firestore:generateReleaseAssets UP-TO-DATE
+> Task :cloud_firestore:packageReleaseAssets
+> Task :firebase_auth:mergeReleaseShaders
+> Task :firebase_auth:compileReleaseShaders NO-SOURCE
+> Task :firebase_auth:generateReleaseAssets UP-TO-DATE
+> Task :firebase_auth:packageReleaseAssets
+> Task :firebase_core:mergeReleaseShaders
+> Task :firebase_core:compileReleaseShaders NO-SOURCE
+> Task :firebase_core:generateReleaseAssets UP-TO-DATE
+> Task :firebase_core:packageReleaseAssets
+> Task :path_provider_android:mergeReleaseShaders
+> Task :path_provider_android:compileReleaseShaders NO-SOURCE
+> Task :path_provider_android:generateReleaseAssets UP-TO-DATE
+> Task :path_provider_android:packageReleaseAssets
+> Task :shared_preferences_android:mergeReleaseShaders
+> Task :shared_preferences_android:compileReleaseShaders NO-SOURCE
+> Task :shared_preferences_android:generateReleaseAssets UP-TO-DATE
+> Task :shared_preferences_android:packageReleaseAssets
+> Task :app:mergeReleaseAssets
+> Task :app:copyFlutterAssetsRelease
+> Task :app:generateReleaseResValues
+> Task :app:processReleaseGoogleServices
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :shared_preferences_android:compileReleaseKotlin
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :audioplayers_android:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+> Task :cloud_firestore:extractDeepLinksRelease
+
+> Task :audioplayers_android:processReleaseManifest
+package="xyz.luan.audioplayers" found in source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-4.0.3\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="xyz.luan.audioplayers" from the source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-4.0.3\android\src\main\AndroidManifest.xml.
+
+> Task :cloud_firestore:processReleaseManifest
+package="io.flutter.plugins.firebase.firestore" found in source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-6.0.0\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.firestore" from the source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-6.0.0\android\src\main\AndroidManifest.xml.
+
+> Task :firebase_auth:extractDeepLinksRelease
+
+> Task :firebase_auth:processReleaseManifest
+package="io.flutter.plugins.firebase.auth" found in source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-6.0.1\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.auth" from the source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-6.0.1\android\src\main\AndroidManifest.xml.
+
+> Task :firebase_core:extractDeepLinksRelease
+> Task :path_provider_android:extractDeepLinksRelease
+
+> Task :firebase_core:processReleaseManifest
+package="io.flutter.plugins.firebase.core" found in source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-4.0.0\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.core" from the source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-4.0.0\android\src\main\AndroidManifest.xml.
+
+> Task :shared_preferences_android:extractDeepLinksRelease
+
+> Task :path_provider_android:processReleaseManifest
+package="io.flutter.plugins.pathprovider" found in source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.15\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.pathprovider" from the source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.15\android\src\main\AndroidManifest.xml.
+
+> Task :audioplayers_android:bundleLibCompileToJarRelease
+
+> Task :shared_preferences_android:processReleaseManifest
+package="io.flutter.plugins.sharedpreferences" found in source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.7\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.sharedpreferences" from the source AndroidManifest.xml: C:\Users\kaush\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.7\android\src\main\AndroidManifest.xml.
+
+> Task :cloud_firestore:bundleLibCompileToJarRelease
+
+> Task :app:processReleaseMainManifest
+package="com.kaushik.sensorysafari" found in source AndroidManifest.xml: C:\Users\kaush\Documents\Sensory_Safari_App\android\app\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.kaushik.sensorysafari" from the source AndroidManifest.xml: C:\Users\kaush\Documents\Sensory_Safari_App\android\app\src\main\AndroidManifest.xml.
+
+> Task :app:mergeReleaseResources
+> Task :app:processReleaseManifest
+> Task :app:processReleaseManifestForPackage
+> Task :path_provider_android:bundleLibCompileToJarRelease
+> Task :firebase_auth:bundleLibCompileToJarRelease
+> Task :audioplayers_android:prepareReleaseArtProfile
+> Task :app:javaPreCompileRelease
+> Task :cloud_firestore:prepareReleaseArtProfile
+> Task :firebase_auth:prepareReleaseArtProfile
+> Task :firebase_core:prepareReleaseArtProfile
+> Task :path_provider_android:prepareReleaseArtProfile
+> Task :shared_preferences_android:prepareReleaseArtProfile
+> Task :app:mergeReleaseArtProfile
+> Task :audioplayers_android:bundleLibRuntimeToJarRelease
+> Task :cloud_firestore:bundleLibRuntimeToJarRelease
+> Task :firebase_auth:bundleLibRuntimeToJarRelease
+> Task :path_provider_android:bundleLibRuntimeToJarRelease
+> Task :firebase_core:bundleLibRuntimeToJarRelease
+> Task :app:extractProguardFiles
+> Task :audioplayers_android:processReleaseJavaRes
+> Task :cloud_firestore:processReleaseJavaRes NO-SOURCE
+> Task :firebase_auth:processReleaseJavaRes NO-SOURCE
+> Task :firebase_core:processReleaseJavaRes NO-SOURCE
+> Task :path_provider_android:processReleaseJavaRes NO-SOURCE
+> Task :app:mergeReleaseStartupProfile
+> Task :app:processApplicationManifestReleaseForBundle
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:processReleaseResources
+> Task :app:configureCMakeRelease[arm64-v8a]
+> Task :app:buildCMakeRelease[arm64-v8a]
+> Task :app:configureCMakeRelease[armeabi-v7a]
+> Task :app:buildCMakeRelease[armeabi-v7a]
+> Task :app:bundleReleaseResources
+> Task :app:configureCMakeRelease[x86_64]
+> Task :app:buildCMakeRelease[x86_64]
+> Task :app:mergeReleaseJniLibFolders
+> Task :audioplayers_android:mergeReleaseJniLibFolders
+> Task :audioplayers_android:mergeReleaseNativeLibs NO-SOURCE
+> Task :audioplayers_android:copyReleaseJniLibsProjectOnly
+> Task :cloud_firestore:mergeReleaseJniLibFolders
+> Task :cloud_firestore:mergeReleaseNativeLibs NO-SOURCE
+> Task :cloud_firestore:copyReleaseJniLibsProjectOnly
+> Task :firebase_auth:mergeReleaseJniLibFolders
+> Task :firebase_auth:mergeReleaseNativeLibs NO-SOURCE
+> Task :firebase_core:mergeReleaseJniLibFolders
+> Task :firebase_core:mergeReleaseNativeLibs NO-SOURCE
+> Task :firebase_core:copyReleaseJniLibsProjectOnly
+> Task :firebase_auth:copyReleaseJniLibsProjectOnly
+> Task :path_provider_android:mergeReleaseJniLibFolders
+> Task :path_provider_android:mergeReleaseNativeLibs NO-SOURCE
+> Task :path_provider_android:copyReleaseJniLibsProjectOnly
+> Task :shared_preferences_android:mergeReleaseJniLibFolders
+> Task :shared_preferences_android:mergeReleaseNativeLibs NO-SOURCE
+> Task :shared_preferences_android:copyReleaseJniLibsProjectOnly
+> Task :app:writeReleaseAppMetadata
+
+> Task :shared_preferences_android:compileReleaseKotlin
+w: file:///C:/Users/kaush/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_android-2.4.7/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt:445:52 Unnecessary non-null assertion (!!) on a non-null receiver of type String
+
+> Task :shared_preferences_android:compileReleaseJavaWithJavac
+> Task :shared_preferences_android:mergeReleaseGeneratedProguardFiles
+> Task :shared_preferences_android:exportReleaseConsumerProguardFiles
+> Task :shared_preferences_android:bundleLibCompileToJarRelease
+> Task :shared_preferences_android:processReleaseJavaRes
+> Task :shared_preferences_android:bundleLibRuntimeToJarRelease
+> Task :app:mergeReleaseNativeLibs
+> Task :app:collectReleaseDependencies
+> Task :app:configureReleaseDependencies
+> Task :app:parseReleaseIntegrityConfig
+> Task :app:validateSigningRelease
+> Task :app:stripReleaseDebugSymbols
+> Task :app:compileReleaseKotlin
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:extractReleaseNativeDebugMetadata
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:processReleaseJavaRes
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:mergeReleaseJavaResource
+> Task :app:minifyReleaseWithR8
+> Task :app:buildReleasePreBundle
+> Task :app:compileReleaseArtProfile
+> Task :app:packageReleaseBundle
+> Task :app:shrinkBundleReleaseResources
+> Task :app:signReleaseBundle
+> Task :app:produceReleaseBundleIdeListingFile
+> Task :app:createReleaseBundleListingFileRedirect
+> Task :app:bundleRelease
+> Task :app:zipReleaseNativeSymbols NO-SOURCE
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 13m 34s
+187 actionable tasks: 182 executed, 5 up-to-date

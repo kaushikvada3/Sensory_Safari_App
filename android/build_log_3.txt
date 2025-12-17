@@ -1,0 +1,46 @@
+Starting a Gradle Daemon, 2 incompatible and 1 stopped Daemons could not be reused, use --status for details
+
+> Configure project :gradle
+WARNING: Unsupported Kotlin plugin version.
+The `embedded-kotlin` and `kotlin-dsl` plugins rely on features of Kotlin `1.9.0` that might work differently than in the requested version `1.9.20`.
+
+> Task :gradle:checkKotlinGradlePluginConfigurationErrors
+> Task :gradle:compileKotlin UP-TO-DATE
+> Task :gradle:compileJava NO-SOURCE
+> Task :gradle:compileGroovy NO-SOURCE
+> Task :gradle:pluginDescriptors UP-TO-DATE
+> Task :gradle:processResources
+> Task :gradle:classes
+> Task :gradle:jar
+
+> Configure project :app
+Warning: Flutter support for your project's Gradle version (8.3.0) will soon be dropped. Please upgrade your Gradle version to a version of at least 8.7.0 soon.
+Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+
+Potential fix: Your project's gradle version is typically defined in the gradle wrapper file. By default, this can be found at C:\Users\kaush\Documents\Sensory_Safari_App\android/gradle/wrapper/gradle-wrapper.properties. 
+For more information, see https://docs.gradle.org/current/userguide/gradle_wrapper.html.
+
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'C:\Users\kaush\Documents\Sensory_Safari_App\android\app\build.gradle' line: 14
+
+* What went wrong:
+An exception occurred applying plugin request [id: 'dev.flutter.flutter-gradle-plugin']
+> Failed to apply plugin 'dev.flutter.flutter-gradle-plugin'.
+   > Error: Your project's Android Gradle Plugin version (Android Gradle Plugin version 8.1.0) is lower than Flutter's minimum supported version of Android Gradle Plugin version 8.1.1. Please upgrade your Android Gradle Plugin version. 
+     Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+     
+     Potential fix: Your project's AGP version is typically defined in the plugins block of the `settings.gradle` file (C:\Users\kaush\Documents\Sensory_Safari_App\android/settings.gradle), by a plugin with the id of com.android.application. 
+     If you don't see a plugins block, your project was likely created with an older template version. In this case it is most likely defined in the top-level build.gradle file (C:\Users\kaush\Documents\Sensory_Safari_App\android/build.gradle) by the following line in the dependencies block of the buildscript: "classpath 'com.android.tools.build:gradle:<version>'".
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 42s
+5 actionable tasks: 3 executed, 2 up-to-date
