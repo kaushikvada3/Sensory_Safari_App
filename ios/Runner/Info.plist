@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Sensory Safari Flutter</string>
+	<string>Sensory Safari</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -44,21 +44,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-
-	<!-- Explain to the user why you need LAN access -->
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>This app uses the local network to discover and communicate with nearby devices and for debugging during development.</string>
-
-	<!-- Bonjour (mDNS) service types your app advertises/browses -->
-	<key>NSBonjourServices</key>
-	<array>
-		<!-- Needed for Flutter/Dart VM service in debug builds -->
-		<string>_dartobservatory._tcp</string>
-		<!-- Only add others if you truly use them:
-		<string>_airplay._tcp</string>
-		<string>_googlecast._tcp</string>
-		-->
 	</array>
 </dict>
 </plist>

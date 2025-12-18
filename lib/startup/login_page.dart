@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:ui' as ui; // for BackdropFilter and blur
 import 'package:shared_preferences/shared_preferences.dart';
+import 'liquid_glass_components.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onComplete;
@@ -16,15 +17,15 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
   Widget _modeToggle() {
     return Center(
-      child: LiquidGlass(
+      child: LiquidGlassContainer(
         borderRadius: 28,
         blurSigma: 18,
-        strokeColor: Colors.white.withOpacity(0.22),
-        gradient: const [
+        borderColor: Colors.white.withOpacity(0.22),
+        gradientColors: const [
           Colors.white,
           Colors.white,
         ],
-        stops: const [0.0, 1.0],
+        gradientStops: const [0.0, 1.0],
         opacity: 0.18,
         child: _SlidingToggle(
           isSignUp: _isSignUp,
@@ -283,6 +284,328 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
     widget.onComplete();
   }
 
+  Future<void> _showAccountHelpDialog() async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.all(24),
+          child: LiquidGlassContainer(
+            borderRadius: 24,
+            blurSigma: 20,
+            opacity: 0.15,
+            borderColor: Colors.white.withOpacity(0.4),
+            solidColor: Colors.white.withOpacity(0.2),
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'Account Help',
+                  style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'What would you like to do?',
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                LiquidGlassButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _showPasswordResetDialog(); // The old "Overwrite" flow
+                  },
+                  child: const Text('Reset Password'),
+                ),
+                const SizedBox(height: 16),
+                LiquidGlassButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _showChangeUsernameDialog(); // The new "Migration" flow
+                  },
+                  child: const Text('Change Username'),
+                ),
+                const SizedBox(height: 24),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cancel', style: TextStyle(color: Colors.white54)),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _showPasswordResetDialog() async {
+    final userCtrl = TextEditingController();
+    final passCtrl = TextEditingController();
+    String? localError;
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              insetPadding: const EdgeInsets.all(24),
+              child: LiquidGlassContainer(
+                borderRadius: 24,
+                blurSigma: 20,
+                opacity: 0.15,
+                borderColor: Colors.white.withOpacity(0.4),
+                solidColor: Colors.white.withOpacity(0.2),
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Text(
+                      'Reset Password',
+                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Enter your username to set a new password.',
+                      style: TextStyle(color: Colors.white70, fontSize: 14),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
+                    LiquidGlassTextField(
+                      controller: userCtrl, 
+                      label: 'Username', 
+                      prefixIcon: Icons.person_outline,
+                    ),
+                    const SizedBox(height: 16),
+                    LiquidGlassTextField(
+                      controller: passCtrl, 
+                      label: 'New Password', 
+                      prefixIcon: Icons.lock_outline,
+                    ),
+                    if (localError != null) ...[
+                      const SizedBox(height: 12),
+                      _ErrorBox(message: localError!),
+                    ],
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+                        ),
+                        const SizedBox(width: 8),
+                        FilledButton(
+                          style: FilledButton.styleFrom(backgroundColor: const Color(0xFF0BBAB4)),
+                          onPressed: () async {
+                            final u = userCtrl.text.trim();
+                            final p = passCtrl.text.trim();
+                            if (u.isEmpty || p.isEmpty) {
+                              setState(() => localError = 'Please fill all fields');
+                              return;
+                            }
+                            try {
+                              final docRef = FirebaseFirestore.instance.collection('users').doc(u);
+                              final doc = await docRef.get();
+                              if (!doc.exists) {
+                                setState(() => localError = 'User not found');
+                                return;
+                              }
+                              await docRef.update({'password': p});
+                              if (context.mounted) {
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Password updated! You can now log in.')),
+                                );
+                              }
+                            } catch (e) {
+                              setState(() => localError = 'Error: $e');
+                            }
+                          },
+                          child: const Text('Reset'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _showChangeUsernameDialog() async {
+    final oldUserCtrl = TextEditingController();
+    final oldPassCtrl = TextEditingController();
+    final newUserCtrl = TextEditingController();
+    String? localError;
+    bool busy = false;
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              insetPadding: const EdgeInsets.all(24),
+              child: LiquidGlassContainer(
+                borderRadius: 24,
+                blurSigma: 20,
+                opacity: 0.15,
+                borderColor: Colors.white.withOpacity(0.4),
+                solidColor: Colors.white.withOpacity(0.2),
+                padding: const EdgeInsets.all(24),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        'Change Username',
+                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Move all your data to a new username.',
+                        style: TextStyle(color: Colors.white70, fontSize: 13),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      LiquidGlassTextField(
+                        controller: oldUserCtrl, 
+                        label: 'Old Username', 
+                        prefixIcon: Icons.person,
+                      ),
+                      const SizedBox(height: 12),
+                      LiquidGlassTextField(
+                        controller: oldPassCtrl, 
+                        label: 'Old Password', 
+                        obscureText: true,
+                        prefixIcon: Icons.lock,
+                      ),
+                      const SizedBox(height: 12),
+                      LiquidGlassTextField(
+                        controller: newUserCtrl, 
+                        label: 'New Username', 
+                        prefixIcon: Icons.person_add,
+                      ),
+                      if (localError != null) ...[
+                        const SizedBox(height: 12),
+                        _ErrorBox(message: localError!),
+                      ],
+                      const SizedBox(height: 24),
+                      if (busy)
+                        const Center(child: CircularProgressIndicator(color: Colors.white))
+                      else
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+                            ),
+                            const SizedBox(width: 8),
+                            FilledButton(
+                              style: FilledButton.styleFrom(backgroundColor: const Color(0xFF0BBAB4)),
+                              onPressed: () async {
+                                final oldU = oldUserCtrl.text.trim();
+                                final oldP = oldPassCtrl.text.trim();
+                                final newU = newUserCtrl.text.trim();
+                  
+                                if (oldU.isEmpty || oldP.isEmpty || newU.isEmpty) {
+                                  setState(() => localError = 'Fill all fields');
+                                  return;
+                                }
+                                if (newU.length < 3) {
+                                  setState(() => localError = 'New username too short');
+                                  return;
+                                }
+                                setState(() => busy = true);
+                                final err = await _performMigration(oldU, oldP, newU);
+                                if (context.mounted) {
+                                  if (err == null) {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Success! Moved $oldU to $newU.')),
+                                    );
+                                  } else {
+                                    setState(() {
+                                      localError = err;
+                                      busy = false;
+                                    });
+                                  }
+                                }
+                              },
+                              child: const Text('Move Data'),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<String?> _performMigration(String oldU, String oldP, String newU) async {
+    final db = FirebaseFirestore.instance;
+    final oldRef = db.collection('users').doc(oldU);
+    final newRef = db.collection('users').doc(newU);
+
+    try {
+      // 1. Verify Old
+      final oldSnap = await oldRef.get();
+      if (!oldSnap.exists) return 'Old user not found';
+      final data = oldSnap.data()!;
+      if ((data['password'] ?? '').toString() != oldP) return 'Incorrect password for old user';
+
+      // 2. Verify New
+      final newSnap = await newRef.get();
+      if (newSnap.exists) return 'Username "$newU" is already taken';
+
+      // 3. Create New User Doc (Copy + update name)
+      final newData = Map<String, dynamic>.from(data);
+      newData['name'] = newU;
+      newData['createdAt'] = _formatLocal(DateTime.now()); 
+      await newRef.set(newData);
+
+      // 4. Migrate Subcollection "sessions"
+      // Note: This needs to scan & copy.
+      // We will do a simple batch copy.
+      final sessions = await oldRef.collection('sessions').get();
+      final batch = db.batch();
+      
+      for (final doc in sessions.docs) {
+        final newSubRef = newRef.collection('sessions').doc(doc.id);
+        batch.set(newSubRef, doc.data());
+        batch.delete(doc.reference); // Delete old session
+      }
+      
+      // Delete old user parent doc
+      batch.delete(oldRef);
+
+      await batch.commit();
+      return null; // Success
+    } catch (e) {
+      return 'Migration failed: $e';
+    }
+  }
+
   Future<void> _resetLoginFields() async {
     _usernameController.clear();
     _passwordController.clear();
@@ -306,50 +629,12 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
+    return LiquidGlassScaffold(
+      // Static background asset
+      backgroundAsset: "assets/portrait_background.jpg",
       body: Stack(
         children: [
-          // ===== Use Image.asset directly for background =====
-          Positioned.fill(
-            child: Image.asset(
-              "assets/portrait_background.png",
-              fit: BoxFit.cover,
-            ),
-          ),
-          // Animated "liquid" blobs behind everything
-          IgnorePointer(
-            child: AnimatedBuilder(
-              animation: _bgCtrl,
-              builder: (context, _) {
-                // t runs 0..1..0
-                final t = _bgCtrl.value;
-                final dx1 = (t - 0.5) * 40; // -20..20
-                final dy1 = (t - 0.5) * -30; // 15..-15
-                final dx2 = (0.5 - t) * 50; // -25..25
-                final dy2 = (t - 0.5) * 26; // -13..13
-                return Stack(children: [
-                  // big teal blob top-left
-                  Positioned(
-                    left: -80 + dx1,
-                    top: -40 + dy1,
-                    child: _Blob(size: 220, color: const Color(0xFF00C2B7).withOpacity(0.18)), // reduce opacity
-                  ),
-                  // lime blob top-right
-                  Positioned(
-                    right: -60 + dx2,
-                    top: 120 + dy2,
-                    child: _Blob(size: 180, color: const Color(0xFF7BEA5A).withOpacity(0.14)), // reduce opacity
-                  ),
-                  // aqua blob bottom-left
-                  Positioned(
-                    left: -40 - dx2,
-                    bottom: -60 - dy1,
-                    child: _Blob(size: 200, color: const Color(0xFF38E7D3).withOpacity(0.12)), // reduce opacity
-                  ),
-                ]);
-              },
-            ),
-          ),
+          // (No manual background needed here, handled by Scaffold)
 
           // ===== Content =====
           SafeArea(
@@ -387,108 +672,80 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                       _modeToggle(),
                       const SizedBox(height: 18),
 
-                      // Card container for inputs (friendly, elevated)
-                      LiquidGlass(
+                      // Card container for inputs
+                      LiquidGlassContainer(
                         borderRadius: 20,
-                        blurSigma: 18,
-                        strokeColor: Colors.transparent, // no border
-                        gradient: const [
-                          Colors.transparent,
-                          Colors.transparent,
+                        blurSigma: 24, // High blur per iOS 26 spec
+                        borderColor: Colors.white.withOpacity(0.15),
+                        gradientColors: const [
+                          Colors.white,
+                          Colors.white,
                         ],
-                        stops: const [0.0, 1.0],
-                        opacity: 0.01, // almost fully transparent
+                        gradientStops: const [0.0, 1.0],
+                        opacity: 0.08, // Very subtle fill
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 18, 16, 6),
-                          child: Theme(
-                            data: theme.copyWith(
-                              inputDecorationTheme: InputDecorationTheme(
-                                filled: true,
-                                fillColor: const Color(0xFFFFFFFF).withOpacity(0.24),
-                                labelStyle: const TextStyle(color: Colors.white),
-                                hintStyle: const TextStyle(color: Colors.white70),
-                                prefixIconColor: Colors.white70,
-                                suffixIconColor: Colors.white70,
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                  borderSide: BorderSide(color: Colors.white.withOpacity(0.35)),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                  borderSide: const BorderSide(width: 2, color: Color(0xFF0BBAB4)),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                  borderSide: const BorderSide(color: Colors.redAccent),
-                                ),
+                          padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              LiquidGlassTextField(
+                                controller: _usernameController,
+                                focusNode: _usernameFocus,
+                                textInputAction: TextInputAction.next,
+                                label: 'Username',
+                                prefixIcon: Icons.person_outline,
+                                onSubmitted: (_) => _passwordFocus.requestFocus(),
                               ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                TextField(
-                                  controller: _usernameController,
-                                  focusNode: _usernameFocus,
-                                  textInputAction: TextInputAction.next,
-                                  style: const TextStyle(color: Colors.white),
-                                  cursorColor: Colors.white,
-                                  onSubmitted: (_) => _passwordFocus.requestFocus(),
-                                  decoration: const InputDecoration(
-                                    labelText: 'Username',
-                                    prefixIcon: Icon(Icons.person_outline),
-                                  ),
+                              const SizedBox(height: 16),
+                              LiquidGlassTextField(
+                                controller: _passwordController,
+                                focusNode: _passwordFocus,
+                                obscureText: _obscure,
+                                label: 'Password',
+                                prefixIcon: Icons.lock_outline,
+                                suffixIcon: IconButton(
+                                  tooltip: 'Show/Hide password',
+                                  icon: Icon(_obscure ? Icons.visibility : Icons.visibility_off, color: Colors.white70),
+                                  onPressed: () => setState(() => _obscure = !_obscure),
                                 ),
-                                const SizedBox(height: 10),
-                                TextField(
-                                  controller: _passwordController,
-                                  focusNode: _passwordFocus,
+                                onSubmitted: (_) => _isSignUp ? _attemptSignUp() : _attemptLogin(),
+                              ),
+                              if (_isSignUp) ...[
+                                const SizedBox(height: 16),
+                                LiquidGlassTextField(
+                                  controller: _confirmController,
                                   obscureText: _obscure,
-                                  style: const TextStyle(color: Colors.white),
-                                  cursorColor: Colors.white,
-                                  onSubmitted: (_) => _isSignUp ? _attemptSignUp() : _attemptLogin(),
-                                  decoration: InputDecoration(
-                                    labelText: 'Password',
-                                    prefixIcon: const Icon(Icons.lock_outline),
-                                    suffixIcon: IconButton(
-                                      tooltip: 'Show/Hide password',
-                                      icon: Icon(_obscure ? Icons.visibility : Icons.visibility_off),
-                                      onPressed: () => setState(() => _obscure = !_obscure),
-                                    ),
+                                  label: 'Confirm password',
+                                  prefixIcon: Icons.lock_outline,
+                                  suffixIcon: IconButton(
+                                    tooltip: 'Show/Hide password',
+                                    icon: Icon(_obscure ? Icons.visibility : Icons.visibility_off, color: Colors.white70),
+                                    onPressed: () => setState(() => _obscure = !_obscure),
                                   ),
-                                ),
-                                if (_isSignUp) ...[
-                                  const SizedBox(height: 10),
-                                  TextField(
-                                    controller: _confirmController,
-                                    obscureText: _obscure,
-                                    style: const TextStyle(color: Colors.white),
-                                    cursorColor: Colors.white,
-                                    onSubmitted: (_) => _attemptSignUp(),
-                                    decoration: InputDecoration(
-                                      labelText: 'Confirm password',
-                                      prefixIcon: const Icon(Icons.lock_outline),
-                                      suffixIcon: IconButton(
-                                        tooltip: 'Show/Hide password',
-                                        icon: Icon(_obscure ? Icons.visibility : Icons.visibility_off),
-                                        onPressed: () => setState(() => _obscure = !_obscure),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                                const SizedBox(height: 6),
-                                Row(
-                                  children: [
-                                    Switch(
-                                      value: _rememberMe,
-                                      onChanged: (v) => setState(() => _rememberMe = v),
-                                      activeColor: const Color(0xFF0BBAB4),
-                                    ),
-                                    const Text('Remember me', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
-                                  ],
+                                  onSubmitted: (_) => _attemptSignUp(),
                                 ),
                               ],
-                            ),
+                              const SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  Switch(
+                                    value: _rememberMe,
+                                    onChanged: (v) => setState(() => _rememberMe = v),
+                                    activeColor: const Color(0xFF0BBAB4),
+                                  ),
+                                  const Text('Remember me', style: TextStyle(color: Colors.white)),
+                                  const Spacer(),
+                                  if (!_isSignUp)
+                                    TextButton(
+                                      onPressed: _showAccountHelpDialog,
+                                      child: const Text(
+                                        'Reset',
+                                        style: TextStyle(color: Colors.white70, decoration: TextDecoration.underline, decorationColor: Colors.white30),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -518,34 +775,16 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
                       const SizedBox(height: 16),
 
-                      SizedBox(
-                        height: 56,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: _busy ? null : (_isSignUp ? _attemptSignUp : _attemptLogin),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF0C5E59),
-                            disabledBackgroundColor: Colors.white70,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-                            elevation: 6,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (_busy)
-                                const SizedBox(
-                                  width: 18,
-                                  height: 18,
-                                  child: CircularProgressIndicator(strokeWidth: 2),
-                                ),
-                              if (_busy) const SizedBox(width: 12),
-                              Text(_busy
-                                  ? (_isSignUp ? 'Creating account…' : 'Heading into the jungle…')
-                                  : (_isSignUp ? 'Create my account' : 'Start Adventure')),
-                            ],
-                          ),
-                        ),
+                      const SizedBox(height: 16),
+                      
+                      LiquidGlassButton(
+                        onPressed: _busy ? null : (_isSignUp ? _attemptSignUp : _attemptLogin),
+                        child: _busy
+                              ? const SizedBox(
+                                  width: 20, height: 20,
+                                  child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                                )
+                              : Text(_isSignUp ? 'Create my account' : 'Start Adventure'),
                       ),
 
                       const SizedBox(height: 20),
@@ -568,15 +807,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                       const SizedBox(height: 12),
 
                       // Reset Fields Button
-                      Center(
-                        child: TextButton(
-                          onPressed: _resetLoginFields,
-                          child: const Text(
-                            'Reset Login Information',
-                            style: TextStyle(color: Colors.white70, decoration: TextDecoration.underline),
-                          ),
-                        ),
-                      ),
+
                     ],
                   ),
                 ),
@@ -589,93 +820,30 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   }
 }
 
-/// ======= Reusable LiquidGlass and Blob widgets =======
-class LiquidGlass extends StatelessWidget {
-  final Widget child;
-  final double borderRadius;
-  final double blurSigma;
-  final List<Color> gradient;
-  final List<double> stops;
-  final Color strokeColor;
-  final double opacity;
-  const LiquidGlass({
-    super.key,
-    required this.child,
-    this.borderRadius = 20,
-    this.blurSigma = 18,
-    this.gradient = const [Colors.white, Colors.white],
-    this.stops = const [0.0, 1.0],
-    this.strokeColor = const Color(0x80FFFFFF),
-    this.opacity = 0.18,
-  });
+
+
+
+
+class _ErrorBox extends StatelessWidget {
+  final String message;
+  const _ErrorBox({required this.message});
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                gradient.first.withOpacity(opacity + 0.10),
-                gradient.last.withOpacity(opacity),
-              ],
-              stops: stops,
-            ),
-            border: Border.all(color: strokeColor, width: 1.2),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.22),
-                blurRadius: 18,
-                offset: const Offset(0, 10),
-              ),
-            ],
-          ),
-          child: child,
-        ),
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: const Color(0xFFB00020).withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFB00020).withOpacity(0.4)),
+      ),
+      child: Text(
+        message,
+        style: const TextStyle(color: Color(0xFFFFB4AB), fontSize: 13),
+        textAlign: TextAlign.center,
       ),
     );
   }
-}
-
-class _Blob extends StatelessWidget {
-  final double size;
-  final Color color;
-  const _Blob({required this.size, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: CustomPaint(
-        painter: _BlobPainter(color),
-        size: Size.square(size),
-      ),
-    );
-  }
-}
-
-class _BlobPainter extends CustomPainter {
-  final Color color;
-  _BlobPainter(this.color);
-  @override
-  void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final paint = Paint()
-      ..shader = ui.Gradient.radial(
-        rect.center,
-        size.width * 0.6,
-        [color, color.withOpacity(0.0)],
-        [0.0, 1.0],
-      );
-    canvas.drawCircle(rect.center, size.width * 0.6, paint);
-  }
-  @override
-  bool shouldRepaint(covariant _BlobPainter oldDelegate) => oldDelegate.color != color;
 }
 
 class _SlidingToggle extends StatefulWidget {
@@ -761,12 +929,12 @@ class _SlidingToggleState extends State<_SlidingToggle> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.login, size: 18, color: Color(0xFF0C5E59)),
-                                const SizedBox(width: 8),
+                                const Icon(Icons.login, size: 16, color: Color(0xFF0C5E59)),
+                                const SizedBox(width: 6),
                                 Text(
                                   'Log in',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700,
                                     color: (percent > 0.5) ? Colors.white : const Color(0xFF0C5E59),
                                   ),
@@ -787,12 +955,12 @@ class _SlidingToggleState extends State<_SlidingToggle> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.person_add_alt_1, size: 18, color: (percent > 0.5) ? const Color(0xFF0C5E59) : Colors.white),
-                                const SizedBox(width: 8),
+                                Icon(Icons.person_add_alt_1, size: 16, color: (percent > 0.5) ? const Color(0xFF0C5E59) : Colors.white),
+                                const SizedBox(width: 6),
                                 Text(
                                   'Create account',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700,
                                     color: (percent > 0.5) ? const Color(0xFF0C5E59) : Colors.white,
                                   ),

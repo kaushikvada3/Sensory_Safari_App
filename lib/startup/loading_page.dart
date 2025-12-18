@@ -57,7 +57,7 @@ class _LoadingPageState extends State<LoadingPage> {
           // ---- Portrait background image ----
           Positioned.fill(
             child: Image.asset(
-              'assets/portrait_background.png',
+              'assets/portrait_background.jpg',
               fit: BoxFit.cover,
             ),
           ),

@@ -1,5 +1,12 @@
 platform :ios, '15.0'
 
+# Optimization: Disable input/output paths to speed up incremental builds in some cases,
+# and ensure deterministic UUIDs for better caching.
+install! 'cocoapods',
+  :disable_input_output_paths => true,
+  :deterministic_uuids => true
+
+
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
